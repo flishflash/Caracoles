@@ -1,57 +1,80 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using UnityEditor;
+
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public struct newRoomsObjects
+
+public class SaveObjAsPrefabs : MonoBehaviour, IDataPersistance
 {
-    public GameObject Room;
+    [HideInInspector]
+    public fatherRoom rooms = new fatherRoom();
+    GetAllPrefabs getAllPrefabs;
 
-}
-
-public class SaveObjAsPrefabs : MonoBehaviour
-{
-    public List<newRoomsObjects> rooms = new List<newRoomsObjects>();
+    private void Start()
+    {
+        getAllPrefabs = GameObject.Find("PrefabManager").GetComponent<GetAllPrefabs>();
+    }
 
     public void SaveObj()
     {
-        newRoomsObjects newRoom;
         GameObject go = GameObject.Find("RoomBehaviour");
         string name = go.name.ToString();
         go.name = System.Guid.NewGuid().ToString();
+        rooms.children = new List<childObjRoom>();
 
-        // Create folder Prefabs and set the path as within the Prefabs folder,
-        // and name it as the GameObject's name with the .Prefab format
-        if (!Directory.Exists("Assets/Prefabs/Rooms"))
+        rooms.name = go.name;
+
+        for (int i = 0; i < go.transform.childCount; i++)
         {
-            AssetDatabase.CreateFolder("Assets", "Prefabs");
-            AssetDatabase.CreateFolder("Prefabs", "Rooms");
+            childObjRoom childObj = new childObjRoom();
+            Transform child = go.transform.GetChild(i);
+            childObj.p = child.position;
+            childObj.r = child.rotation.eulerAngles;
+            childObj.s = child.localScale;
+            childObj.nameID = child.GetComponent<PrefabID>().GUID;
+            rooms.children.Add(childObj);
         }
-        string localPath = "Assets/Prefabs/Rooms/" + go.name + ".prefab";
 
-        // Make sure the file name is unique, in case an existing Prefab has the same name.
-        localPath = AssetDatabase.GenerateUniqueAssetPath(localPath);
+        DataPersistanceManager.instance.SaveGame();
 
-        // Create the new Prefab and log whether Prefab was saved successfully.
-        bool prefabSuccess;
-        GameObject pref = PrefabUtility.SaveAsPrefabAsset(go, localPath, out prefabSuccess);
-        if (prefabSuccess == true)
-        { 
-            Debug.Log("Prefab was saved successfully");
-            newRoom.Room = pref;
-
-            rooms.Add(newRoom);
-        }
-        else
-            Debug.Log("Prefab failed to save" + prefabSuccess);
-
-        go.name=name;   
+        go.name = name;
     }
 
     public void LoadPrefabFromFile()
     {
-        if(rooms.Count >= 0)
-            Instantiate(rooms[0].Room, Vector3.up*2, Quaternion.identity);
+        //spawn object
+        GameObject objToSpawn = new GameObject(rooms.name);
+        //Add children
+        foreach (var item in rooms.children)
+        {
+            Quaternion rot = Quaternion.Euler(item.r.x, item.r.y, item.r.z);
+            GameObject go = Instantiate(getAllPrefabs.checkAllPrefabs(item.nameID), item.p, rot);
+            go.transform.localScale = item.s;
+            go.transform.parent = objToSpawn.transform;
+        }
+    }
+
+    public void LoadNewScene()
+    {
+        DataPersistanceManager.instance.SaveGame();
+        StartCoroutine(loadScene());
+    }
+    IEnumerator loadScene()
+    {
+        yield return new WaitForFixedUpdate();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void LoadData(GameData gameData)
+    {
+        foreach (var item in gameData.allCraftedRooms)
+        {
+            rooms = item;
+        }
+    }
+
+    public void SaveData(ref GameData gameData)
+    {
+        gameData.allCraftedRooms.Add(rooms);
     }
 }
