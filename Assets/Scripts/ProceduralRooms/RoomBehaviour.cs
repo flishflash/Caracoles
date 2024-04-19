@@ -34,6 +34,31 @@ public class RoomBehaviour : MonoBehaviour
                 }
             }
         }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            OnMouseDown();
+        }
+    }
+
+    private void OnMouseDown()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.collider != null && hit.transform.tag == "Tile" && (!hit.transform.GetComponent<Tile>().isOccuped
+                && hit.transform.GetComponent<Tile>().isAccesible))
+            {
+                GameObject go = Instantiate(currentObjToPlace, hit.transform.position, Quaternion.identity);
+                AddFloorToList(go);
+                go.transform.parent = transform;
+                hit.transform.GetComponent<Tile>().isOccuped = true;
+                gridManager.SetAllToNotAccesible();
+                CheckNearTiles();
+            }
+        }
     }
 
     void CheckNearTiles()
@@ -101,6 +126,10 @@ public class RoomBehaviour : MonoBehaviour
                 i = Random.Range(0, walls.Length);
                 placedWalls.Add(Instantiate(walls[i], floor.transform.position + (Vector3.right / 1.5f) + (Vector3.up / 5), Quaternion.Euler(0, 90, 0)));
             }
+        }
+        for (int i = 0; i < placedWalls.Count; i++)
+        {
+            placedWalls[i].transform.parent=transform;
         }
     }
 
