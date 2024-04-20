@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileBrickA_large
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d4e3cccd91f19dd4f8c9ad899bbfc720, type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -5,14 +5,16 @@ using UnityEngine;
 public class RoomBehaviour : MonoBehaviour
 {
     [SerializeField] GameObject[] walls; 
+    [SerializeField] GameObject[] floors; 
     
     List<GameObject> roomFloors = new List<GameObject>();
+    List<GameObject> dungeonObj = new List<GameObject>();
     List<GameObject> placedWalls = new List<GameObject>();
 
     //Change me to change the touch phase used.
     TouchPhase touchPhase = TouchPhase.Began;
 
-    [SerializeField] GameObject currentObjToPlace;
+    [SerializeField] GameObject currentObjToPlace = null;
     [SerializeField] GridManager gridManager;
 
     private void Update()
@@ -27,7 +29,20 @@ public class RoomBehaviour : MonoBehaviour
                 if (hit.collider != null && hit.transform.tag == "Tile" && (!hit.transform.GetComponent<Tile>().isOccuped 
                     && hit.transform.GetComponent<Tile>().isAccesible))
                 {
-                    AddFloorToList(Instantiate(currentObjToPlace, hit.transform.position, Quaternion.identity));
+                    GameObject go = new GameObject();
+
+                    if (currentObjToPlace != null && CheckIfObjFits(currentObjToPlace.GetComponent<ArtifactDetails>(), hit.point))
+                    {
+                        go = Instantiate(currentObjToPlace, hit.transform.position, Quaternion.identity);
+                        dungeonObj.Add(go);
+                    }
+                    else if (currentObjToPlace == null)
+                    {
+                        go = Instantiate(floors[Random.Range(0, floors.Length)], hit.transform.position, Quaternion.identity);
+                        AddFloorToList(go);
+                    }
+
+                    go.transform.parent = transform;
                     hit.transform.GetComponent<Tile>().isOccuped = true;
                     gridManager.SetAllToNotAccesible();
                     CheckNearTiles();
@@ -51,14 +66,49 @@ public class RoomBehaviour : MonoBehaviour
             if (hit.collider != null && hit.transform.tag == "Tile" && (!hit.transform.GetComponent<Tile>().isOccuped
                 && hit.transform.GetComponent<Tile>().isAccesible))
             {
-                GameObject go = Instantiate(currentObjToPlace, hit.transform.position, Quaternion.identity);
-                AddFloorToList(go);
+                GameObject go = new GameObject();
+
+                if (currentObjToPlace.transform.tag != "Floor" && CheckIfObjFits(currentObjToPlace.GetComponent<ArtifactDetails>(), hit.point))
+                {
+                    go = Instantiate(currentObjToPlace, hit.transform.position, Quaternion.identity);
+                    dungeonObj.Add(go);
+                }
+                else if (currentObjToPlace == null)
+                {
+                    go = Instantiate(floors[Random.Range(0, floors.Length)], hit.transform.position, Quaternion.identity);
+                    AddFloorToList(go);
+                }
+                else if (currentObjToPlace.transform.tag == "Floor")
+                {
+                    go = Instantiate(currentObjToPlace, hit.transform.position, Quaternion.identity);
+                    AddFloorToList(go);
+                }
+
                 go.transform.parent = transform;
                 hit.transform.GetComponent<Tile>().isOccuped = true;
                 gridManager.SetAllToNotAccesible();
                 CheckNearTiles();
             }
         }
+    }
+
+    bool CheckIfObjFits(ArtifactDetails artifactDetails, Vector2 hitPos)
+    {
+        bool ret = true;
+
+        RaycastHit[] hits = Physics.BoxCastAll(hitPos, artifactDetails.objectSize / 2, Vector3.up);
+
+        foreach (var item in hits)
+        {
+            if (item.transform.tag == "DungeonStructure")
+            {
+                //Instance Error to Player;
+
+                return false;
+            }
+        }
+
+        return ret;
     }
 
     void CheckNearTiles()
