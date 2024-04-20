@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class SaveObjAsPrefabs : MonoBehaviour, IDataPersistance
+public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
 {
     [HideInInspector]
     public fatherRoom rooms = new fatherRoom();

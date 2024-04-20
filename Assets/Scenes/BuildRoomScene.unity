@@ -311,6 +311,9 @@ MonoBehaviour:
   - {fileID: 4893326332712606766, guid: de6d67f0b213a4242b8e883464b9b9f8, type: 3}
   currentObjToPlace: {fileID: 0}
   gridManager: {fileID: 1939804448}
+  layersToIngore:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &461279299
 GameObject:
   m_ObjectHideFlags: 0

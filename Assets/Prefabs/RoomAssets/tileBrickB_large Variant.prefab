@@ -85,12 +85,20 @@ PrefabInstance:
       value: tileBrickB_large Variant
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 44fe890a012dea34892c96577eed65c7, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 44fe890a012dea34892c96577eed65c7, type: 3}
       propertyPath: m_TagString
       value: Floor
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 44fe890a012dea34892c96577eed65c7, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 44fe890a012dea34892c96577eed65c7, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

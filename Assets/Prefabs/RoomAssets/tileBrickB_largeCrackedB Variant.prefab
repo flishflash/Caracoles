@@ -73,8 +73,16 @@ PrefabInstance:
       value: tileBrickB_largeCrackedB Variant
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 612e9869af800a44aab3ad9e170ac77a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 612e9869af800a44aab3ad9e170ac77a, type: 3}
       propertyPath: m_TagString
       value: Floor
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 612e9869af800a44aab3ad9e170ac77a, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

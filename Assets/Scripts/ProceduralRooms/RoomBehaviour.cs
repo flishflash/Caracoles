@@ -17,6 +17,8 @@ public class RoomBehaviour : MonoBehaviour
     [SerializeField] GameObject currentObjToPlace = null;
     [SerializeField] GridManager gridManager;
 
+    [SerializeField] LayerMask layersToIngore;
+
     private void Update()
     {
         if (Input.touchCount == 1 && Input.GetTouch(0).phase == touchPhase)
@@ -31,7 +33,7 @@ public class RoomBehaviour : MonoBehaviour
                 {
                     GameObject go = new GameObject();
 
-                    if (currentObjToPlace != null && CheckIfObjFits(currentObjToPlace.GetComponent<ArtifactDetails>(), hit.point))
+                    if (currentObjToPlace != null && CheckIfObjFits(currentObjToPlace.GetComponent<ArtifactDetails>(), hit.point, hit.transform.GetComponent<Tile>().isOccuped))
                     {
                         go = Instantiate(currentObjToPlace, hit.transform.position, Quaternion.identity);
                         dungeonObj.Add(go);
@@ -61,49 +63,55 @@ public class RoomBehaviour : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~layersToIngore))
         {
-            if (hit.collider != null && hit.transform.tag == "Tile" && (!hit.transform.GetComponent<Tile>().isOccuped
-                && hit.transform.GetComponent<Tile>().isAccesible))
+            GameObject go = null;
+               
+            if (currentObjToPlace != null && (currentObjToPlace.transform.tag != "Floor" &&
+                CheckIfObjFits(currentObjToPlace.GetComponent<ArtifactDetails>(), hit.point, hit.transform.GetComponent<Tile>().isOccuped)))
             {
-                GameObject go = new GameObject();
-
-                if (currentObjToPlace.transform.tag != "Floor" && CheckIfObjFits(currentObjToPlace.GetComponent<ArtifactDetails>(), hit.point))
-                {
-                    go = Instantiate(currentObjToPlace, hit.transform.position, Quaternion.identity);
-                    dungeonObj.Add(go);
-                }
-                else if (currentObjToPlace == null)
-                {
-                    go = Instantiate(floors[Random.Range(0, floors.Length)], hit.transform.position, Quaternion.identity);
-                    AddFloorToList(go);
-                }
-                else if (currentObjToPlace.transform.tag == "Floor")
-                {
-                    go = Instantiate(currentObjToPlace, hit.transform.position, Quaternion.identity);
-                    AddFloorToList(go);
-                }
-
+                go = Instantiate(currentObjToPlace, hit.transform.position + currentObjToPlace.GetComponent<ArtifactDetails>().spawnPoint, 
+                                    Quaternion.Euler(currentObjToPlace.GetComponent<ArtifactDetails>().spawnRot));
+                dungeonObj.Add(go);
+                go.transform.parent = transform;
+            }
+            else if (currentObjToPlace == null && !hit.transform.GetComponent<Tile>().isOccuped && 
+                hit.transform.GetComponent<Tile>().isAccesible)
+            {
+                go = Instantiate(floors[Random.Range(0, floors.Length)], hit.transform.position, Quaternion.identity);
+                AddFloorToList(go);
                 go.transform.parent = transform;
                 hit.transform.GetComponent<Tile>().isOccuped = true;
-                gridManager.SetAllToNotAccesible();
-                CheckNearTiles();
             }
+            else if (currentObjToPlace != null && (currentObjToPlace.transform.tag == "Floor" && 
+                !hit.transform.GetComponent<Tile>().isOccuped && 
+                hit.transform.GetComponent<Tile>().isAccesible))
+            {
+                go = Instantiate(currentObjToPlace, hit.transform.position, Quaternion.identity);
+                AddFloorToList(go);
+                go.transform.parent = transform;
+                hit.transform.GetComponent<Tile>().isOccuped = true;
+            }
+
+            gridManager.SetAllToNotAccesible();
+            CheckNearTiles();
         }
     }
 
-    bool CheckIfObjFits(ArtifactDetails artifactDetails, Vector2 hitPos)
+    bool CheckIfObjFits(ArtifactDetails artifactDetails, Vector2 hitPos, bool occupied)
     {
         bool ret = true;
 
-        RaycastHit[] hits = Physics.BoxCastAll(hitPos, artifactDetails.objectSize / 2, Vector3.up);
+        if (!occupied) return occupied;
+
+        Collider[] hits = Physics.OverlapBox(hitPos, artifactDetails.objectSize / 2);
 
         foreach (var item in hits)
         {
             if (item.transform.tag == "DungeonStructure")
             {
                 //Instance Error to Player;
-
+                Debug.Log("Golpeo con: " + item.transform.gameObject.name);
                 return false;
             }
         }

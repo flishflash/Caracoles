@@ -69,6 +69,10 @@ PrefabInstance:
       value: wall_broken
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4bd6bb687477b114792522cf858d486d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4bd6bb687477b114792522cf858d486d, type: 3}
       propertyPath: m_TagString
       value: DungeonStructure
       objectReference: {fileID: 0}
@@ -79,6 +83,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4bd6bb687477b114792522cf858d486d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8852097046945793438}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4bd6bb687477b114792522cf858d486d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -9184503858822292054}
   m_SourcePrefab: {fileID: 100100000, guid: 4bd6bb687477b114792522cf858d486d, type: 3}
 --- !u!1 &3076267882709177846 stripped
 GameObject:
@@ -99,3 +106,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GUID: f40ae8aa-4ae5-4c26-8af3-7989b088ee4b
   prefab: {fileID: 0}
+--- !u!65 &-9184503858822292054
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3076267882709177846}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4, y: 4, z: 1.5}
+  m_Center: {x: -0.00000011920929, y: 2, z: 0}
