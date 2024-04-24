@@ -26,77 +26,86 @@ public class RoomBehaviour : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~layersToIngore))
             {
-                if (hit.collider != null && hit.transform.tag == "Tile" && (!hit.transform.GetComponent<Tile>().isOccuped 
-                    && hit.transform.GetComponent<Tile>().isAccesible))
+                GameObject go = null;
+
+                if (currentObjToPlace != null && (currentObjToPlace.transform.tag != "Floor" &&
+                    CheckIfObjFits(currentObjToPlace.GetComponent<ArtifactDetails>(), hit.point, hit.transform.GetComponent<Tile>().isOccuped)))
                 {
-                    GameObject go = new GameObject();
-
-                    if (currentObjToPlace != null && CheckIfObjFits(currentObjToPlace.GetComponent<ArtifactDetails>(), hit.point, hit.transform.GetComponent<Tile>().isOccuped))
-                    {
-                        go = Instantiate(currentObjToPlace, hit.transform.position, Quaternion.identity);
-                        dungeonObj.Add(go);
-                    }
-                    else if (currentObjToPlace == null)
-                    {
-                        go = Instantiate(floors[Random.Range(0, floors.Length)], hit.transform.position, Quaternion.identity);
-                        AddFloorToList(go);
-                    }
-
+                    go = Instantiate(currentObjToPlace, hit.transform.position + currentObjToPlace.GetComponent<ArtifactDetails>().spawnPoint,
+                                        Quaternion.Euler(currentObjToPlace.GetComponent<ArtifactDetails>().spawnRot));
+                    dungeonObj.Add(go);
+                    go.transform.parent = transform;
+                }
+                else if (currentObjToPlace == null && !hit.transform.GetComponent<Tile>().isOccuped &&
+                    hit.transform.GetComponent<Tile>().isAccesible)
+                {
+                    go = Instantiate(floors[Random.Range(0, floors.Length)], hit.transform.position, Quaternion.identity);
+                    AddFloorToList(go);
                     go.transform.parent = transform;
                     hit.transform.GetComponent<Tile>().isOccuped = true;
-                    gridManager.SetAllToNotAccesible();
-                    CheckNearTiles();
                 }
+                else if (currentObjToPlace != null && (currentObjToPlace.transform.tag == "Floor" &&
+                    !hit.transform.GetComponent<Tile>().isOccuped &&
+                    hit.transform.GetComponent<Tile>().isAccesible))
+                {
+                    go = Instantiate(currentObjToPlace, hit.transform.position, Quaternion.identity);
+                    AddFloorToList(go);
+                    go.transform.parent = transform;
+                    hit.transform.GetComponent<Tile>().isOccuped = true;
+                }
+
+                gridManager.SetAllToNotAccesible();
+                CheckNearTiles();
             }
         }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            OnMouseDown();
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    OnMouseDown();
+        //}
     }
 
-    private void OnMouseDown()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
+    //private void OnMouseDown()
+    //{
+    //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    //    RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~layersToIngore))
-        {
-            GameObject go = null;
+    //    if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~layersToIngore))
+    //    {
+    //        GameObject go = null;
                
-            if (currentObjToPlace != null && (currentObjToPlace.transform.tag != "Floor" &&
-                CheckIfObjFits(currentObjToPlace.GetComponent<ArtifactDetails>(), hit.point, hit.transform.GetComponent<Tile>().isOccuped)))
-            {
-                go = Instantiate(currentObjToPlace, hit.transform.position + currentObjToPlace.GetComponent<ArtifactDetails>().spawnPoint, 
-                                    Quaternion.Euler(currentObjToPlace.GetComponent<ArtifactDetails>().spawnRot));
-                dungeonObj.Add(go);
-                go.transform.parent = transform;
-            }
-            else if (currentObjToPlace == null && !hit.transform.GetComponent<Tile>().isOccuped && 
-                hit.transform.GetComponent<Tile>().isAccesible)
-            {
-                go = Instantiate(floors[Random.Range(0, floors.Length)], hit.transform.position, Quaternion.identity);
-                AddFloorToList(go);
-                go.transform.parent = transform;
-                hit.transform.GetComponent<Tile>().isOccuped = true;
-            }
-            else if (currentObjToPlace != null && (currentObjToPlace.transform.tag == "Floor" && 
-                !hit.transform.GetComponent<Tile>().isOccuped && 
-                hit.transform.GetComponent<Tile>().isAccesible))
-            {
-                go = Instantiate(currentObjToPlace, hit.transform.position, Quaternion.identity);
-                AddFloorToList(go);
-                go.transform.parent = transform;
-                hit.transform.GetComponent<Tile>().isOccuped = true;
-            }
+    //        if (currentObjToPlace != null && (currentObjToPlace.transform.tag != "Floor" &&
+    //            CheckIfObjFits(currentObjToPlace.GetComponent<ArtifactDetails>(), hit.point, hit.transform.GetComponent<Tile>().isOccuped)))
+    //        {
+    //            go = Instantiate(currentObjToPlace, hit.transform.position + currentObjToPlace.GetComponent<ArtifactDetails>().spawnPoint, 
+    //                                Quaternion.Euler(currentObjToPlace.GetComponent<ArtifactDetails>().spawnRot));
+    //            dungeonObj.Add(go);
+    //            go.transform.parent = transform;
+    //        }
+    //        else if (currentObjToPlace == null && !hit.transform.GetComponent<Tile>().isOccuped && 
+    //            hit.transform.GetComponent<Tile>().isAccesible)
+    //        {
+    //            go = Instantiate(floors[Random.Range(0, floors.Length)], hit.transform.position, Quaternion.identity);
+    //            AddFloorToList(go);
+    //            go.transform.parent = transform;
+    //            hit.transform.GetComponent<Tile>().isOccuped = true;
+    //        }
+    //        else if (currentObjToPlace != null && (currentObjToPlace.transform.tag == "Floor" && 
+    //            !hit.transform.GetComponent<Tile>().isOccuped && 
+    //            hit.transform.GetComponent<Tile>().isAccesible))
+    //        {
+    //            go = Instantiate(currentObjToPlace, hit.transform.position, Quaternion.identity);
+    //            AddFloorToList(go);
+    //            go.transform.parent = transform;
+    //            hit.transform.GetComponent<Tile>().isOccuped = true;
+    //        }
 
-            gridManager.SetAllToNotAccesible();
-            CheckNearTiles();
-        }
-    }
+    //        gridManager.SetAllToNotAccesible();
+    //        CheckNearTiles();
+    //    }
+    //}
 
     bool CheckIfObjFits(ArtifactDetails artifactDetails, Vector2 hitPos, bool occupied)
     {
