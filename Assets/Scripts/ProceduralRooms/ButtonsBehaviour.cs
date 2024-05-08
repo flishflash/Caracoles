@@ -18,23 +18,25 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
 
     public void SaveObj()
     {
-        GameObject go = GameObject.Find("RoomBehaviour");
+        GridManager go = GameObject.Find("GridManager").GetComponent<GridManager>();
         string name = go.name.ToString();
         go.name = System.Guid.NewGuid().ToString();
-        rooms.children = new List<childObjRoom>();
+        rooms.children = new List<roomTiles>();
 
         rooms.name = go.name;
 
-        for (int i = 0; i < go.transform.childCount; i++)
-        {
-            childObjRoom childObj = new childObjRoom();
-            Transform child = go.transform.GetChild(i);
-            childObj.p = child.position;
-            childObj.r = child.rotation.eulerAngles;
-            childObj.s = child.localScale;
-            childObj.nameID = child.GetComponent<PrefabID>().GUID;
-            rooms.children.Add(childObj);
-        }
+        //for (int i = 0; i < go.tiles.Count; i++)
+        //{
+        //    roomTiles childObj = new roomTiles();
+
+        //    childObj.nameID = go.tiles[i].transform.name;
+        //    childObj.tilePos = go.tiles[i].tilePos;
+        //    childObj.tileState = go.tiles[i].tileState;
+
+        //    childObj._innerTiles = go.tiles[i].innerTilesInfo;
+
+        //    rooms.children.Add(childObj);
+        //}
 
         DataPersistanceManager.instance.SaveGame();
 
@@ -43,16 +45,7 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
 
     public void LoadPrefabFromFile()
     {
-        //spawn object
-        GameObject objToSpawn = new GameObject(rooms.name);
-        //Add children
-        foreach (var item in rooms.children)
-        {
-            Quaternion rot = Quaternion.Euler(item.r.x, item.r.y, item.r.z);
-            GameObject go = Instantiate(getAllPrefabs.checkAllPrefabs(item.nameID), item.p, rot);
-            go.transform.localScale = item.s;
-            go.transform.parent = objToSpawn.transform;
-        }
+
     }
 
     public void LoadNewScene()

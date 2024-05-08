@@ -977,10 +977,10 @@ PlayerSettings:
       PointOfService: False
       RecordedCallsFolder: False
       Contacts: False
+      Proximity: False
       InternetClient: True
       CodeGeneration: False
       BackgroundMediaPlayback: False
-      Proximity: False
   metroTargetDeviceFamilies:
     Desktop: False
     Holographic: False
@@ -1044,7 +1044,7 @@ PlayerSettings:
   cloudProjectId: a7d3c628-15de-43b6-9aa9-41f1af021deb
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
+  projectName: VR-AR-Project
   organizationId: calentador
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 1
