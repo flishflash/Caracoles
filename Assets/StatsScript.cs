@@ -6,7 +6,7 @@ public class StatsScript : MonoBehaviour
 {
     public int hp = 2;
     public int dmg = 1;
-    public int spe = 1000; // tiempo que tarda en atacar, en milisegundos
+    public float spe = 1f; // tiempo que tarda en atacar, en milisegundos
 
     void Start()
     {
@@ -17,7 +17,7 @@ public class StatsScript : MonoBehaviour
     {
         if (hp <= 0)
         {
-
+            Destroy(gameObject);
         }
     }
 }

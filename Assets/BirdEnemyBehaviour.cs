@@ -11,14 +11,16 @@ public class BirdEnemyBehaviour : MonoBehaviour
     private SnailKnightBehaviour knightScript;
 
     [SerializeField] private float detectionInterval = 1f; //in seconds
-    [SerializeField] private float detectionRadius = 10f;
+    [SerializeField] private float detectionRadius = 20f;
 
-    private StatsScript statsScript;
+    private StatsScript enemyStats;
+
+    bool isAttacking = false;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        statsScript = GetComponent<StatsScript>();
+        enemyStats = GetComponent<StatsScript>();
 
         knightScript = player.GetComponent<SnailKnightBehaviour>();
 
@@ -29,7 +31,10 @@ public class BirdEnemyBehaviour : MonoBehaviour
     {
         if (knightScript.inCombat)
         {
-            LookAtTarget();
+            if (player != null)
+            {
+                Fight();
+            }
         }
     }
 
@@ -41,22 +46,22 @@ public class BirdEnemyBehaviour : MonoBehaviour
         }
     }
 
-    //private void OnTriggerStay(Collision collision)
-    //{
-    //    //Debug.Log("Colisión detectada");
-    //    if (collision.gameObject.CompareTag("Player"))
-    //    {
-    //        agent.velocity = Vector3.zero;
-    //        Debug.Log("Stop");
-    //    }
-    //}
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        //agent.velocity = Vector3.zero;
-    //    }
-    //}
+    private void Fight()
+    {
+        LookAtTarget();
+
+        if (Vector3.Distance(transform.position, player.transform.position) <= 4)
+        {
+            if (!isAttacking)
+            {
+                StartCoroutine("DealDamage");
+            }
+            else
+            {
+                agent.velocity = Vector3.zero;
+            }
+        }
+    }
 
     //Para mirar hacia el enemigo en combate
     void LookAtTarget()
@@ -68,5 +73,19 @@ public class BirdEnemyBehaviour : MonoBehaviour
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * 10);
         }
+    }
+
+    IEnumerator DealDamage()
+    {
+        isAttacking = true;
+
+        if (knightScript.playerStats != null)
+        {
+            knightScript.playerStats.hp -= enemyStats.dmg;
+            Debug.Log("Player hit");
+        }
+        yield return new WaitForSeconds(enemyStats.spe);
+
+        isAttacking = false;
     }
 }

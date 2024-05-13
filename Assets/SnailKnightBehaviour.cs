@@ -8,16 +8,18 @@ public class SnailKnightBehaviour : MonoBehaviour
     private NavMeshAgent agent;
     Vector3 target = Vector3.zero;
 
-    public Transform enemy;
+    [HideInInspector] public bool inCombat = false;
+    bool isAttacking = false;
 
-    public bool inCombat = false;
+    [HideInInspector] public StatsScript playerStats;
 
-    private StatsScript statsScript;
+    private GameObject enemy;
+    private StatsScript enemyStats;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        statsScript = GetComponent<StatsScript>();
+        playerStats = GetComponent<StatsScript>();
         
         agent.SetDestination(target);
     }
@@ -26,7 +28,10 @@ public class SnailKnightBehaviour : MonoBehaviour
     {
         if (inCombat)
         {
-            LookAtTarget();
+            if (enemy != null)
+            {
+                Fight();
+            }
         }
     }
 
@@ -38,6 +43,8 @@ public class SnailKnightBehaviour : MonoBehaviour
         {
             if (!inCombat)
             {
+                enemy = other.gameObject;
+                enemyStats = enemy.GetComponent<StatsScript>();
                 EnterCombat();
             }
         }
@@ -57,18 +64,59 @@ public class SnailKnightBehaviour : MonoBehaviour
     void EnterCombat()
     {
         inCombat = true;
-        agent.SetDestination(enemy.position);
+        agent.SetDestination(enemy.transform.position);
+    }
+
+    void ExitCombat()
+    {
+        inCombat = false;
+        agent.SetDestination(target);
+    }
+
+    private void Fight()
+    {
+        LookAtTarget();
+
+        if (Vector3.Distance(transform.position, enemy.transform.position) <= 4)
+        {
+            if (!isAttacking)
+            {
+                StartCoroutine("DealDamage");
+            }
+            else
+            {
+                agent.velocity = Vector3.zero;
+            }
+        }
     }
 
     //Para mirar hacia el enemigo en combate
     void LookAtTarget()
     {
-        Vector3 direction = enemy.position - transform.position;
+        Vector3 direction = enemy.transform.position - transform.position;
         direction.y = 0f;
 
         if (direction.magnitude > 0.1f)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * 10);
         }
+    }
+
+    IEnumerator DealDamage()
+    {
+        isAttacking = true;
+
+        if (enemyStats != null)
+        {
+            enemyStats.hp -= playerStats.dmg;
+            Debug.Log("Enemy hit");
+            if (enemyStats.hp <= 0)
+            {
+                ExitCombat();
+            }
+        }
+        yield return new WaitForSeconds(playerStats.spe);
+        
+        isAttacking = false;
     }
 }
