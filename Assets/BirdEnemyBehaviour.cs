@@ -25,7 +25,8 @@ public class BirdEnemyBehaviour : MonoBehaviour
 
         knightScript = player.GetComponent<SnailKnightBehaviour>();
 
-        InvokeRepeating("FindPlayer", 0f, detectionInterval);
+        if (player != null)
+            InvokeRepeating("FindPlayer", 0f, detectionInterval);
     }
 
     void Update()

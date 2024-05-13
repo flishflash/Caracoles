@@ -33,12 +33,15 @@ public class SnailKnightBehaviour : MonoBehaviour
                 Fight();
             }
         }
+        else
+        {
+            agent.SetDestination(target);
+        }
     }
 
     //Cuando un enemigo está cerca
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        Debug.Log("TriggerEnter");
         if (other.CompareTag("Enemy"))
         {
             if (!inCombat)
@@ -52,7 +55,7 @@ public class SnailKnightBehaviour : MonoBehaviour
 
                 if (Physics.Raycast(transform.position, direction, out hit, direction.magnitude))
                 {
-                    if (hit.collider.CompareTag("Player"))
+                    if (hit.collider.CompareTag("Enemy"))
                     {
                         EnterCombat();
                     }
@@ -81,6 +84,7 @@ public class SnailKnightBehaviour : MonoBehaviour
     void ExitCombat()
     {
         inCombat = false;
+        isAttacking = false;
         agent.SetDestination(target);
     }
 
