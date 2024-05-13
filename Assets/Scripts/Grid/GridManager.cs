@@ -84,15 +84,39 @@ public class GridManager : MonoBehaviour
             for (int x = tile.tilePos.x - 1; x <= tile.tilePos.x + 1; x++)
             {
                 pow++;
-                if (((x < width && x >= 0 ) && (y < height && y >= 0)))
+                if (((x < width && x >= 0 ) && (y < height && y >= 0)) &&
+                    tiles[x, y].tileState != -1 && pow % 2 == 0
+                    && tile.tilePos != new Vector2Int(x, y) 
+                    && tile.tileState < 400)
                 {
-                    if (tiles[x, y].tileState != -1 && pow % 2 == 0 
-                        && tile.tilePos != new Vector2Int(x, y)) tile.tileState += (int)Mathf.Pow(2, pow);
+                    tile.tileState += (int)Mathf.Pow(2, pow);
                 }
             }
         }
 
         tile.SetTileState(tile.tileState);
+    }
+
+    public int CheckDoorOrientation(Tile tile)
+    {
+        int i = -1;
+        int pow = 400;
+
+        for (int y = tile.tilePos.y - 1; y <= tile.tilePos.y + 1; y++)
+        {
+            for (int x = tile.tilePos.x - 1; x <= tile.tilePos.x + 1; x++)
+            {
+                pow++;
+                if (((x < width && x >= 0) && (y < height && y >= 0)) &&
+                    tiles[x, y].tileState != -1 && pow % 2 == 0
+                    && tile.tilePos != new Vector2Int(x, y))
+                {
+                    i = pow;
+                }
+            }
+        }
+
+        return i;
     }
 
     public void  CheckIfBoardEmpty()

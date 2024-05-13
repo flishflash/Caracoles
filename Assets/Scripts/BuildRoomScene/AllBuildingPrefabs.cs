@@ -40,6 +40,14 @@ public class AllBuildingPrefabs : MonoBehaviour
                 return floors[13];
             case 304://derecha + abajo + izquierda
                 return floors[14];
+            case 402://puerta vacio arriba
+                return floors[15];
+            case 404://puerta vacio izquierda
+                return floors[16];
+            case 406://puerta vacio derecha
+                return floors[17];
+            case 408://puerta vacio abajo
+                return floors[18];
             default:
                 return floors[0];
         }

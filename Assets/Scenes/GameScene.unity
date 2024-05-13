@@ -379,6 +379,10 @@ MonoBehaviour:
   - {fileID: 4893326332712606766, guid: de6d67f0b213a4242b8e883464b9b9f8, type: 3}
   - {fileID: 4893326332712606766, guid: de6d67f0b213a4242b8e883464b9b9f8, type: 3}
   - {fileID: 4893326332712606766, guid: de6d67f0b213a4242b8e883464b9b9f8, type: 3}
+  - {fileID: 4893326332712606766, guid: de6d67f0b213a4242b8e883464b9b9f8, type: 3}
+  - {fileID: 4893326332712606766, guid: de6d67f0b213a4242b8e883464b9b9f8, type: 3}
+  - {fileID: 4893326332712606766, guid: de6d67f0b213a4242b8e883464b9b9f8, type: 3}
+  - {fileID: 4893326332712606766, guid: de6d67f0b213a4242b8e883464b9b9f8, type: 3}
 --- !u!4 &318210778
 Transform:
   m_ObjectHideFlags: 0
@@ -569,17 +573,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 598997094700426165, guid: dacd3c421f0065a49a5ab1680e48f25a,
-        type: 3}
-      propertyPath: allPrefabs.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 598997094700426165, guid: dacd3c421f0065a49a5ab1680e48f25a,
-        type: 3}
-      propertyPath: 'allPrefabs.Array.data[0]'
-      value: 
-      objectReference: {fileID: 7202463585932823052, guid: bbe5f380672a6a74bbdd9c8547ba351f,
-        type: 3}
     - target: {fileID: 7123854624367046279, guid: dacd3c421f0065a49a5ab1680e48f25a,
         type: 3}
       propertyPath: m_RootOrder

@@ -3,6 +3,7 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
     public int tileState = -1;
+    public bool isDoor = false;
     public bool isAccesible = true;
     public Vector2Int tilePos = new Vector2Int();
     public innerTiles _innerTiles = new innerTiles();
@@ -50,6 +51,18 @@ public class Tile : MonoBehaviour
         tileState = state;
         if (currentFloor != null) Destroy(currentFloor);
         currentFloor = (tileState == -1) ? null : Instantiate(allBuildingPrefabs.GetBuildingByByte(state), transform);
+        switch (tileState)
+        {
+            case 402:
+            case 404:
+            case 406:
+            case 408:
+                isDoor = true;
+                break;
+            default:
+                isDoor = false;
+                break;
+        }
     }
 
     public void SetFullTile(roomTiles roomTile, string groupID)
