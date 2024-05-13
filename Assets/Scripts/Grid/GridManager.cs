@@ -41,6 +41,17 @@ public class GridManager : MonoBehaviour
         CalculateAllTileState();
     }
 
+    public void ErraseRoom(string groupID)
+    {
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                if (tiles[x, y].groupID == groupID && groupID != "") tiles[x, y].ClearTile();
+            }
+        }
+    }
+
     void SetAllToAccesible()
     {
         for (int x = 0; x < width; x++)
@@ -70,15 +81,13 @@ public class GridManager : MonoBehaviour
 
         for (int y = tile.tilePos.y - 1; y <= tile.tilePos.y + 1; y++)
         {
-            for (int x = tile.tilePos.y - 1; x <= tile.tilePos.x + 1; x++)
+            for (int x = tile.tilePos.x - 1; x <= tile.tilePos.x + 1; x++)
             {
-                if (tile.tilePos != new Vector2Int(x, y))
+                pow++;
+                if (((x < width && x >= 0 ) && (y < height && y >= 0)))
                 {
-                    pow++;
-                    if (((x < width && x >= 0 ) && (y < height && y >= 0)))
-                    {
-                        if (tiles[x, y].tileState != -1) tile.tileState += (int)Mathf.Pow(2, pow);
-                    }
+                    if (tiles[x, y].tileState != -1 && pow % 2 == 0 
+                        && tile.tilePos != new Vector2Int(x, y)) tile.tileState += (int)Mathf.Pow(2, pow);
                 }
             }
         }
@@ -100,8 +109,35 @@ public class GridManager : MonoBehaviour
         if (ret) SetAllToAccesible();
     }
 
-    public void SetAllTilesInOtherGrid(GridManager gridManager, Tile tileStart)
+    public void SetAllTilesInOtherGrid(fatherRoom room, Tile tileStart)
     {
+        string GUID = System.Guid.NewGuid().ToString();
+        Vector2Int roomSize = new Vector2Int(room.width/2, room.height/2);
+        Vector2Int pos;
 
+        for (int i = 0; i < room.children.Count; i++)
+        {
+            pos = tileStart.tilePos + room.children[i].tilePos - roomSize;
+            if (pos.x >= width || pos.y >= height || tiles[pos.x, pos.y].tileState != -1)
+            {
+                StartCoroutine(RoomOutOfBounds(GUID));
+
+                break;
+            }
+
+            if (room.children[i].tileState != -1)
+                tiles[pos.x, pos.y].SetFullTile(room.children[i], GUID);
+        }
+    }
+
+    IEnumerator RoomOutOfBounds(string groupID)
+    {
+        //Aviso UI
+        Debug.Log("OUT OF BOUNDS");
+
+        ErraseRoom(groupID);
+        yield return null;
+
+        //Apagar Aviso UI
     }
 }

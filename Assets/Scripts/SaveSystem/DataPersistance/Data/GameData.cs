@@ -9,7 +9,7 @@ public struct roomTiles
 
     public Vector2Int tilePos;
 
-    public byte tileState;
+    public int tileState;
 
     public innerTiles _innerTiles;
 }

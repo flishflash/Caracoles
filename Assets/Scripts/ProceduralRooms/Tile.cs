@@ -17,25 +17,22 @@ public class Tile : MonoBehaviour
     
     AllBuildingPrefabs allBuildingPrefabs;
 
+    [HideInInspector]
+    public string groupID;
+
     private void Start()
     {
+        groupID = "";
         tileState = -1;
         currentFloor = null;
         currentInnerTile = null;
-        allBuildingPrefabs = GameObject.Find("AllBuildingPrefabs").GetComponent<AllBuildingPrefabs>();
         getAllPrefabs = GameObject.Find("PrefabManager").GetComponent<GetAllPrefabs>();
+        allBuildingPrefabs = GameObject.Find("AllBuildingPrefabs").GetComponent<AllBuildingPrefabs>();
     }
 
     private void Update()
     {
-        if (isAccesible)
-        {
-            spriteRenderer.color = Color.green;
-        }
-        else
-        {
-            spriteRenderer.color = Color.grey;
-        }
+        spriteRenderer.color = isAccesible ? Color.green : Color.grey;
     }
 
     public void SetTilePos(Vector2Int pos)
@@ -45,15 +42,16 @@ public class Tile : MonoBehaviour
 
     public void SetTileState(int state)
     {
-        if (currentFloor != null) Destroy(currentFloor);
         tileState = state;
+        if (currentFloor != null) Destroy(currentFloor);
         currentFloor = (tileState == -1) ? null : Instantiate(allBuildingPrefabs.GetBuildingByByte(state), transform);
     }
 
-    public void SetFullTile(roomTiles roomTile)
+    public void SetFullTile(roomTiles roomTile, string groupID)
     {
-        SetTileState(roomTile.tileState);
         isAccesible = false;
+        this.groupID = groupID;
+        SetTileState(roomTile.tileState);
         if (_innerTiles.nameID != "")SetInnerTile(getAllPrefabs.checkAllPrefabs(_innerTiles.nameID).GetComponent<PrefabID>());
     }
 
@@ -61,11 +59,16 @@ public class Tile : MonoBehaviour
     {
         tileState = -1;
         isAccesible = true;
+
         if (currentFloor != null) Destroy(currentFloor);
         currentFloor = null;
+
         _innerTiles.nameID = "";
+
         if (currentInnerTile != null) Destroy(currentInnerTile);
         currentInnerTile = null;
+
+        groupID = "";
     }
 
     public void SetInnerTile(PrefabID objectID)

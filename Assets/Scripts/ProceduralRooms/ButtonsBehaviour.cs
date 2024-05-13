@@ -8,8 +8,10 @@ using UnityEngine.SceneManagement;
 public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
 {
     [SerializeField] GameObject ItemButton;
+
     [HideInInspector]
     public List<fatherRoom> rooms = new List<fatherRoom>();
+    
     GetAllPrefabs getAllPrefabs;
     GameObject Mask;
     RoomBehaviour roomBehaviour;
@@ -22,38 +24,42 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
 
         if (SceneManager.GetActiveScene().name == "GameScene")
         {
-            DataPersistanceManager.instance.LoadGame();
-            InstanciateRoomButtons();
+            StartCoroutine(loadRooms());
         }
-        else 
+        else
         {
             InstanciateItemButtons();
         }
-        
     }
 
     public void SaveObj()
     {
-        GridManager go = GameObject.Find("GridManager").GetComponent<GridManager>();
-        string name = go.name.ToString();
-        go.name = System.Guid.NewGuid().ToString();
+        fatherRoom room = new fatherRoom();
+        room.children = new List<roomTiles>();
+        room.name = System.Guid.NewGuid().ToString();
+        room.width = roomBehaviour.gridManager.width;
+        room.height = roomBehaviour.gridManager.height;
 
-        //for (int i = 0; i < go.tiles.Count; i++)
-        //{
-        //    roomTiles childObj = new roomTiles();
 
-        //    childObj.nameID = go.tiles[i].transform.name;
-        //    childObj.tilePos = go.tiles[i].tilePos;
-        //    childObj.tileState = go.tiles[i].tileState;
+        for (int x = 0; x < room.width; x++)
+        {
+            for (int y = 0; y < room.height; y++)
+            {
+                roomTiles childObj = new roomTiles();
 
-        //    childObj._innerTiles = go.tiles[i].innerTilesInfo;
+                childObj.nameID = roomBehaviour.gridManager.tiles[x, y].transform.name;
+                childObj.tilePos = roomBehaviour.gridManager.tiles[x, y].tilePos;
+                childObj.tileState = roomBehaviour.gridManager.tiles[x, y].tileState;
 
-        //    rooms.children.Add(childObj);
-        //}
+                childObj._innerTiles = roomBehaviour.gridManager.tiles[x, y]._innerTiles;
+
+                room.children.Add(childObj);
+            }
+        }
+
+        if (room.children.Count > 0) rooms.Add(room);
 
         DataPersistanceManager.instance.SaveGame();
-
-        go.name = name;
     }
 
     public void SetErraser()
@@ -81,12 +87,18 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
         {
             go = Instantiate(ItemButton, Mask.transform);
             go.GetComponent<ItemButton>().room = rooms[i];
+            roomBehaviour.SetCurrentRoomToPlace(go.GetComponent<ItemButton>().room);
         }
     }
 
     public void SetSelectedItem(ItemButton itemButton)
     {
         roomBehaviour.SetCurrentObjectToPlace(itemButton.item);
+    }
+
+    public void SetSelectedRoom(ItemButton itemButton)
+    {
+        roomBehaviour.SetCurrentRoomToPlace(itemButton.room);
     }
 
     public void LoadNewScene()
@@ -99,6 +111,13 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
         yield return new WaitForFixedUpdate();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    IEnumerator loadRooms()
+    {
+        yield return new WaitForFixedUpdate();
+        InstanciateRoomButtons();
+    }
+
     public void LoadData(GameData gameData)
     {
         foreach (var item in gameData.allCraftedRooms)
@@ -109,6 +128,9 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
 
     public void SaveData(ref GameData gameData)
     {
-        gameData.allCraftedRooms = rooms;
+        foreach (var room in rooms)
+        {
+            gameData.allCraftedRooms.Add(room);
+        }
     }
 }

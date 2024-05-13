@@ -18,13 +18,13 @@ public class AllBuildingPrefabs : MonoBehaviour
                 return floors[2];
             case 20://arriba + izquierda
                 return floors[3];
-            case 128://abajo
+            case 256://abajo
                 return floors[4];
-            case 132://arriba + abajo
+            case 260://arriba + abajo
                 return floors[5];
-            case 144://izquierda + abajo
+            case 272://izquierda + abajo
                 return floors[6];
-            case 148://arriba + izquierda + abajo
+            case 276://arriba + izquierda + abajo
                 return floors[7];
             case 32://derecha
                 return floors[8];
@@ -34,14 +34,12 @@ public class AllBuildingPrefabs : MonoBehaviour
                 return floors[10];
             case 52://derecha + arriba + izquierda
                 return floors[11];
-            case 160://abajo + derecha
+            case 288://abajo + derecha
                 return floors[12];
-            case 164://arriba + abajo + derecha
+            case 292://arriba + abajo + derecha
                 return floors[13];
-            case 176://derecha + abajo + izquierda
+            case 304://derecha + abajo + izquierda
                 return floors[14];
-            case 180://arriba + derecha + abajo + izquierda
-                return floors[0];
             default:
                 return floors[0];
         }

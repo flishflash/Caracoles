@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RoomBehaviour : MonoBehaviour
 {
@@ -9,10 +10,25 @@ public class RoomBehaviour : MonoBehaviour
 
     public bool errase = false;
 
-    [SerializeField] GameObject currentObjToPlace = null;
-    [SerializeField] GridManager gridManager;
+    public GameObject currentObjToPlace = null;
+    fatherRoom currentRoomToPlace;
+    public GridManager gridManager;
 
     [SerializeField] LayerMask layersToIngore;
+
+    bool isRoom;
+
+    private void Start()
+    {
+        if (SceneManager.GetActiveScene().name == "BuildRoomScene")
+        {
+            isRoom = true;
+        }
+        else 
+        {
+            isRoom = false;
+        }
+    }
 
     private void Update()
     {
@@ -21,39 +37,8 @@ public class RoomBehaviour : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~layersToIngore))
-            {
-                GameObject go = null;
-
-                //if (currentObjToPlace != null && (currentObjToPlace.transform.tag != "Floor" &&
-                //    CheckIfObjFits(currentObjToPlace.GetComponent<ArtifactDetails>(), hit.point, hit.transform.GetComponent<Tile>().isOccuped)))
-                //{
-                //    go = Instantiate(currentObjToPlace, hit.transform.position + currentObjToPlace.GetComponent<ArtifactDetails>().spawnPoint,
-                //                        Quaternion.Euler(currentObjToPlace.GetComponent<ArtifactDetails>().spawnRot));
-                //    dungeonObj.Add(go);
-                //    go.transform.parent = transform;
-                //}
-                //else if (currentObjToPlace == null && !hit.transform.GetComponent<Tile>().isOccuped &&
-                //    hit.transform.GetComponent<Tile>().isAccesible)
-                //{
-                //    go = Instantiate(floors[Random.Range(0, floors.Length)], hit.transform.position, Quaternion.identity);
-                //    AddFloorToList(go);
-                //    go.transform.parent = transform;
-                //    hit.transform.GetComponent<Tile>().isOccuped = true;
-                //}
-                //else if (currentObjToPlace != null && (currentObjToPlace.transform.tag == "Floor" &&
-                //    !hit.transform.GetComponent<Tile>().isOccuped &&
-                //    hit.transform.GetComponent<Tile>().isAccesible))
-                //{
-                //    go = Instantiate(currentObjToPlace, hit.transform.position, Quaternion.identity);
-                //    AddFloorToList(go);
-                //    go.transform.parent = transform;
-                //    hit.transform.GetComponent<Tile>().isOccuped = true;
-                //}
-
-                //gridManager.SetAllToNotAccesible();
-                //CheckNearTiles();
-            }
+            if(!isRoom) InputForDungeon(out hit, ray);
+            else InputForRoom(out hit, ray);
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -67,6 +52,27 @@ public class RoomBehaviour : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
+        if (!isRoom) InputForDungeon(out hit, ray);
+        else InputForRoom(out hit, ray);
+    }
+
+    void InputForDungeon(out RaycastHit hit, Ray ray)
+    {
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~layersToIngore))
+        {
+            if (errase)
+            {
+                gridManager.ErraseRoom(hit.transform.GetComponent<Tile>().groupID);
+            }
+            else if (currentRoomToPlace.name != null && hit.transform.GetComponent<Tile>().isAccesible)
+            {
+               gridManager.SetAllTilesInOtherGrid(currentRoomToPlace, hit.transform.GetComponent<Tile>());
+            }
+        }
+    }
+
+    void InputForRoom(out RaycastHit hit, Ray ray)
+    {
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~layersToIngore))
         {
             if (errase)
@@ -81,11 +87,6 @@ public class RoomBehaviour : MonoBehaviour
             else if (currentObjToPlace == null && hit.transform.GetComponent<Tile>().isAccesible)
             {
                 hit.transform.GetComponent<Tile>().tileState = 0;
-            }
-            else if (currentObjToPlace != null && currentObjToPlace.GetComponent<GridManager>() != null
-                && hit.transform.GetComponent<Tile>().isAccesible)
-            {
-                currentObjToPlace.GetComponent<GridManager>().SetAllTilesInOtherGrid(gridManager, hit.transform.GetComponent<Tile>());
             }
 
             gridManager.SetAllToNotAccesible();
@@ -137,5 +138,10 @@ public class RoomBehaviour : MonoBehaviour
     public void SetCurrentObjectToPlace(GameObject gameObject)
     {
         currentObjToPlace = gameObject == null ? null : gameObject;
+    }
+
+    public void SetCurrentRoomToPlace(fatherRoom room)
+    {
+        currentRoomToPlace = room;
     }
 }
