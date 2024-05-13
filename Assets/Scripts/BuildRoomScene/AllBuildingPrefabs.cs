@@ -4,46 +4,46 @@ using UnityEngine;
 
 public class AllBuildingPrefabs : MonoBehaviour 
 {
-    [SerializeField] GameObject floor;
+    [SerializeField] List<GameObject> floors;
 
     public GameObject GetBuildingByByte(int tileState)
     {
         switch (tileState)
         {
             case 0://solo
-                return floor;
+                return floors[0];
             case 4://arriba
-                return floor;
+                return floors[1];
             case 16://izquierda
-                return floor;
+                return floors[2];
             case 20://arriba + izquierda
-                return floor;
+                return floors[3];
             case 128://abajo
-                return floor;
+                return floors[4];
             case 132://arriba + abajo
-                return floor;
+                return floors[5];
             case 144://izquierda + abajo
-                return floor;
+                return floors[6];
             case 148://arriba + izquierda + abajo
-                return floor;
+                return floors[7];
             case 32://derecha
-                return floor;
+                return floors[8];
             case 36://arriba + derecha
-                return floor;
+                return floors[9];
             case 48://derecha + izquierda
-                return floor;
+                return floors[10];
             case 52://derecha + arriba + izquierda
-                return floor;
+                return floors[11];
             case 160://abajo + derecha
-                return floor;
+                return floors[12];
             case 164://arriba + abajo + derecha
-                return floor;
+                return floors[13];
             case 176://derecha + abajo + izquierda
-                return floor;
+                return floors[14];
             case 180://arriba + derecha + abajo + izquierda
-                return floor;
+                return floors[0];
             default:
-                return floor;
+                return floors[0];
         }
     }
 }

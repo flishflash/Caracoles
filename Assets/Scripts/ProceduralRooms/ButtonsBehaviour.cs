@@ -7,13 +7,19 @@ using UnityEngine.SceneManagement;
 
 public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
 {
+    [SerializeField] GameObject ItemButton;
     [HideInInspector]
     public fatherRoom rooms = new fatherRoom();
     GetAllPrefabs getAllPrefabs;
+    GameObject Mask;
+    RoomBehaviour roomBehaviour;
 
     private void Start()
     {
         getAllPrefabs = GameObject.Find("PrefabManager").GetComponent<GetAllPrefabs>();
+        roomBehaviour = GameObject.Find("RoomBehaviour").GetComponent<RoomBehaviour>();
+        Mask = GameObject.Find("Content");
+        InstanciateItemButtons();
     }
 
     public void SaveObj()
@@ -43,9 +49,21 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
         go.name = name;
     }
 
-    public void LoadPrefabFromFile()
+    void InstanciateItemButtons()
     {
+        GameObject go;
+        Instantiate(ItemButton, Mask.transform);
 
+        for (int i = 0; i < getAllPrefabs.allPrefabs.Count; i++)
+        {
+            go = Instantiate(ItemButton, Mask.transform);
+            go.GetComponent<ItemButton>().item = getAllPrefabs.allPrefabs[i];
+        }
+    }
+
+    public void SetSelectedItem(ItemButton itemButton)
+    {
+        roomBehaviour.SetCurrentObjectToPlace(itemButton.item);
     }
 
     public void LoadNewScene()

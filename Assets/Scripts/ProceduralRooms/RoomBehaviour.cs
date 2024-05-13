@@ -129,4 +129,9 @@ public class RoomBehaviour : MonoBehaviour
             }
         }
     }
+
+    public void SetCurrentObjectToPlace(GameObject gameObject)
+    {
+        currentObjToPlace = gameObject == null ? null : gameObject;
+    }
 }
