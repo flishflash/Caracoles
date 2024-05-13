@@ -45,7 +45,18 @@ public class SnailKnightBehaviour : MonoBehaviour
             {
                 enemy = other.gameObject;
                 enemyStats = enemy.GetComponent<StatsScript>();
-                EnterCombat();
+
+                Vector3 direction = enemy.transform.position - transform.position;
+
+                RaycastHit hit;
+
+                if (Physics.Raycast(transform.position, direction, out hit, direction.magnitude))
+                {
+                    if (hit.collider.CompareTag("Player"))
+                    {
+                        EnterCombat();
+                    }
+                }
             }
         }
     }

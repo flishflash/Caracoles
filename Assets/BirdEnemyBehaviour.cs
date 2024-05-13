@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -42,7 +43,17 @@ public class BirdEnemyBehaviour : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, player.transform.position) <= detectionRadius)
         {
-            agent.SetDestination(player.transform.position);
+            Vector3 direction = player.transform.position - transform.position;
+
+            RaycastHit hit;
+
+            if (Physics.Raycast(transform.position, direction, out hit, direction.magnitude))
+            {
+                if (hit.collider.CompareTag("Player"))
+                {
+                    agent.SetDestination(player.transform.position);
+                }
+            }
         }
     }
 
