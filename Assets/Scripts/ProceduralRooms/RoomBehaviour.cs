@@ -41,10 +41,10 @@ public class RoomBehaviour : MonoBehaviour
             else InputForRoom(out hit, ray);
         }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            OnMouseDown();
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    OnMouseDown();
+        //}
     }
 
     private void OnMouseDown()
@@ -105,7 +105,7 @@ public class RoomBehaviour : MonoBehaviour
         {
             for (int y = tile.tilePos.y - artifactDetails.objectSize.y; y <= tile.tilePos.y + artifactDetails.objectSize.y; y++)
             {
-                if (gridManager.tiles[x, y]._innerTiles.nameID != null) return false;
+                if (gridManager.tiles[x, y].isOccupied()) return false;
             }
         }
 

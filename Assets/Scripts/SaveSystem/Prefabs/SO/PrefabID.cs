@@ -22,6 +22,6 @@ public class PrefabID : MonoBehaviour
 
     public bool CheckIfThisprefab(string uid)
     {
-        return uid == GUID;
+        return string.Compare(GUID, uid) == 0;
     }
 }

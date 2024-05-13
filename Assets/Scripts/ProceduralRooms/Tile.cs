@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Tile : MonoBehaviour
@@ -26,6 +24,7 @@ public class Tile : MonoBehaviour
         tileState = -1;
         currentFloor = null;
         currentInnerTile = null;
+        _innerTiles.nameID = "";
         getAllPrefabs = GameObject.Find("PrefabManager").GetComponent<GetAllPrefabs>();
         allBuildingPrefabs = GameObject.Find("AllBuildingPrefabs").GetComponent<AllBuildingPrefabs>();
     }
@@ -33,6 +32,12 @@ public class Tile : MonoBehaviour
     private void Update()
     {
         spriteRenderer.color = isAccesible ? Color.green : Color.grey;
+    }
+
+    public bool isOccupied()
+    {
+        Debug.Log(currentInnerTile != null);
+        return currentInnerTile != null;
     }
 
     public void SetTilePos(Vector2Int pos)
@@ -52,7 +57,10 @@ public class Tile : MonoBehaviour
         isAccesible = false;
         this.groupID = groupID;
         SetTileState(roomTile.tileState);
-        if (_innerTiles.nameID != "")SetInnerTile(getAllPrefabs.checkAllPrefabs(_innerTiles.nameID).GetComponent<PrefabID>());
+        if (getAllPrefabs.checkAllPrefabs(roomTile._innerTiles.nameID) != null)
+        {
+            SetInnerTile(getAllPrefabs.checkAllPrefabs(roomTile._innerTiles.nameID).GetComponent<PrefabID>());
+        }
     }
 
     public void ClearTile()
@@ -75,5 +83,7 @@ public class Tile : MonoBehaviour
     {
         _innerTiles.nameID = objectID.GUID;
         currentInnerTile = Instantiate(objectID.gameObject, transform);
+        currentInnerTile.transform.localPosition = objectID.transform.position;
+        currentInnerTile.transform.rotation = objectID.transform.rotation;
     }
 }

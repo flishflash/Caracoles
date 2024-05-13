@@ -121,7 +121,6 @@ public class GridManager : MonoBehaviour
             if (pos.x >= width || pos.y >= height || tiles[pos.x, pos.y].tileState != -1)
             {
                 StartCoroutine(RoomOutOfBounds(GUID));
-
                 break;
             }
 
