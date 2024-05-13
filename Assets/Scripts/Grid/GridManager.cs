@@ -11,7 +11,6 @@ public class GridManager : MonoBehaviour
     private void Start()
     {
         tiles = new Tile[width, height];
-
         GenerateGrid();
     }
 
@@ -21,7 +20,7 @@ public class GridManager : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                tiles[x, y] = Instantiate(tilePref, new Vector3(x, 0, y), Quaternion.identity).GetComponent<Tile>();
+                tiles[x, y] = Instantiate(tilePref, new Vector3(x, 0, y) + transform.position, Quaternion.identity).GetComponent<Tile>();
                 tiles[x, y].transform.forward = Vector3.up;
                 tiles[x, y].transform.parent = gameObject.transform;
                 tiles[x, y].name = $"Tile {x}{y}";
@@ -80,5 +79,4 @@ public class GridManager : MonoBehaviour
     {
 
     }
-
 }
