@@ -9,6 +9,9 @@ public class Tile : MonoBehaviour
     public Vector2Int tilePos = new Vector2Int();
     public innerTiles _innerTiles = new innerTiles();
     GameObject currentFloor;
+    GameObject currentInnerTile;
+
+    GetAllPrefabs getAllPrefabs;
 
     [SerializeField] SpriteRenderer spriteRenderer;
     
@@ -18,7 +21,9 @@ public class Tile : MonoBehaviour
     {
         tileState = -1;
         currentFloor = null;
+        currentInnerTile = null;
         allBuildingPrefabs = GameObject.Find("AllBuildingPrefabs").GetComponent<AllBuildingPrefabs>();
+        getAllPrefabs = GameObject.Find("PrefabManager").GetComponent<GetAllPrefabs>();
     }
 
     private void Update()
@@ -45,9 +50,27 @@ public class Tile : MonoBehaviour
         currentFloor = (tileState == -1) ? null : Instantiate(allBuildingPrefabs.GetBuildingByByte(state), transform);
     }
 
+    public void SetFullTile(roomTiles roomTile)
+    {
+        SetTileState(roomTile.tileState);
+        isAccesible = false;
+        if (_innerTiles.nameID != "")SetInnerTile(getAllPrefabs.checkAllPrefabs(_innerTiles.nameID).GetComponent<PrefabID>());
+    }
+
+    public void ClearTile()
+    {
+        tileState = -1;
+        isAccesible = true;
+        if (currentFloor != null) Destroy(currentFloor);
+        currentFloor = null;
+        _innerTiles.nameID = "";
+        if (currentInnerTile != null) Destroy(currentInnerTile);
+        currentInnerTile = null;
+    }
+
     public void SetInnerTile(PrefabID objectID)
     {
         _innerTiles.nameID = objectID.GUID;
-        Instantiate(objectID.gameObject, transform);
+        currentInnerTile = Instantiate(objectID.gameObject, transform);
     }
 }

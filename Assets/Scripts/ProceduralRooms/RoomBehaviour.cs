@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class RoomBehaviour : MonoBehaviour
 {
-    [SerializeField] GameObject[] walls; 
-    [SerializeField] GameObject[] floors; 
-
     //Change me to change the touch phase used.
     TouchPhase touchPhase = TouchPhase.Began;
+
+    public bool errase = false;
 
     [SerializeField] GameObject currentObjToPlace = null;
     [SerializeField] GridManager gridManager;
@@ -70,7 +69,11 @@ public class RoomBehaviour : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~layersToIngore))
         {
-            if (currentObjToPlace != null && currentObjToPlace.GetComponent<ArtifactDetails>() != null &&
+            if (errase)
+            {
+                hit.transform.GetComponent<Tile>().ClearTile();
+            }
+            else if (currentObjToPlace != null && currentObjToPlace.GetComponent<ArtifactDetails>() != null &&
                 CheckIfObjFits(currentObjToPlace.GetComponent<ArtifactDetails>(), hit.transform.GetComponent<Tile>(), hit.transform.GetComponent<Tile>().tileState != -1))
             {
                 hit.transform.GetComponent<Tile>().SetInnerTile(currentObjToPlace.GetComponent<PrefabID>());
@@ -78,8 +81,8 @@ public class RoomBehaviour : MonoBehaviour
             else if (currentObjToPlace == null && hit.transform.GetComponent<Tile>().isAccesible)
             {
                 hit.transform.GetComponent<Tile>().tileState = 0;
-            } 
-            else if (currentObjToPlace != null && currentObjToPlace.GetComponent<GridManager>() != null 
+            }
+            else if (currentObjToPlace != null && currentObjToPlace.GetComponent<GridManager>() != null
                 && hit.transform.GetComponent<Tile>().isAccesible)
             {
                 currentObjToPlace.GetComponent<GridManager>().SetAllTilesInOtherGrid(gridManager, hit.transform.GetComponent<Tile>());
@@ -87,6 +90,7 @@ public class RoomBehaviour : MonoBehaviour
 
             gridManager.SetAllToNotAccesible();
             CheckNearTiles();
+            gridManager.CheckIfBoardEmpty();
         }
     }
 

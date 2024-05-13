@@ -5,4 +5,5 @@ using UnityEngine;
 public class ItemButton : MonoBehaviour
 {
     public GameObject item;
+    public fatherRoom room;
 }

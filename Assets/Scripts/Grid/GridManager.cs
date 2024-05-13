@@ -41,6 +41,17 @@ public class GridManager : MonoBehaviour
         CalculateAllTileState();
     }
 
+    void SetAllToAccesible()
+    {
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                tiles[x, y].isAccesible = true;
+            }
+        }
+    }
+
     void CalculateAllTileState()
     {
         for (int x = 0; x < width; x++)
@@ -73,6 +84,20 @@ public class GridManager : MonoBehaviour
         }
 
         tile.SetTileState(tile.tileState);
+    }
+
+    public void  CheckIfBoardEmpty()
+    {
+        bool ret = true;
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                if (tiles[x, y].tileState != -1) ret = false;
+            }
+        }
+
+        if (ret) SetAllToAccesible();
     }
 
     public void SetAllTilesInOtherGrid(GridManager gridManager, Tile tileStart)

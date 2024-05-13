@@ -9,7 +9,7 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
 {
     [SerializeField] GameObject ItemButton;
     [HideInInspector]
-    public fatherRoom rooms = new fatherRoom();
+    public List<fatherRoom> rooms = new List<fatherRoom>();
     GetAllPrefabs getAllPrefabs;
     GameObject Mask;
     RoomBehaviour roomBehaviour;
@@ -19,7 +19,17 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
         getAllPrefabs = GameObject.Find("PrefabManager").GetComponent<GetAllPrefabs>();
         roomBehaviour = GameObject.Find("RoomBehaviour").GetComponent<RoomBehaviour>();
         Mask = GameObject.Find("Content");
-        InstanciateItemButtons();
+
+        if (SceneManager.GetActiveScene().name == "GameScene")
+        {
+            DataPersistanceManager.instance.LoadGame();
+            InstanciateRoomButtons();
+        }
+        else 
+        {
+            InstanciateItemButtons();
+        }
+        
     }
 
     public void SaveObj()
@@ -27,9 +37,6 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
         GridManager go = GameObject.Find("GridManager").GetComponent<GridManager>();
         string name = go.name.ToString();
         go.name = System.Guid.NewGuid().ToString();
-        rooms.children = new List<roomTiles>();
-
-        rooms.name = go.name;
 
         //for (int i = 0; i < go.tiles.Count; i++)
         //{
@@ -49,6 +56,11 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
         go.name = name;
     }
 
+    public void SetErraser()
+    {
+        roomBehaviour.errase = !roomBehaviour.errase;
+    }
+
     void InstanciateItemButtons()
     {
         GameObject go;
@@ -58,6 +70,17 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
         {
             go = Instantiate(ItemButton, Mask.transform);
             go.GetComponent<ItemButton>().item = getAllPrefabs.allPrefabs[i];
+        }
+    }
+
+    void InstanciateRoomButtons()
+    {
+        GameObject go;
+
+        for (int i = 0; i < rooms.Count; i++)
+        {
+            go = Instantiate(ItemButton, Mask.transform);
+            go.GetComponent<ItemButton>().room = rooms[i];
         }
     }
 
@@ -80,12 +103,12 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
     {
         foreach (var item in gameData.allCraftedRooms)
         {
-            rooms = item;
+            rooms.Add(item);
         }
     }
 
     public void SaveData(ref GameData gameData)
     {
-        gameData.allCraftedRooms.Add(rooms);
+        gameData.allCraftedRooms = rooms;
     }
 }
