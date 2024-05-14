@@ -111,13 +111,22 @@ public class GridManager : MonoBehaviour
                     tiles[x, y].tileState != -1 && pow % 2 == 0
                     && tile.tilePos != new Vector2Int(x, y))
                 {
+                    if (tiles[x, y].isDoor)
+                    {
+                        StartCoroutine(DoorOutOfBounds());
+                        return false;
+                    }
                     pow++;
                 }
-                if (tiles[x, y].isDoor) return false;
+                
             }
         }
 
-        if (pow > 1 || pow == 0) return false;
+        if (pow > 1 || pow == 0)
+        {
+            StartCoroutine(DoorOutOfBounds());
+            return false;
+        }
         else return true;
     }
 
@@ -175,6 +184,17 @@ public class GridManager : MonoBehaviour
             if (room.children[i].tileState != -1)
                 tiles[pos.x, pos.y].SetFullTile(room.children[i], GUID);
         }
+    }
+
+
+    IEnumerator DoorOutOfBounds()
+    {
+        //Aviso UI
+        Debug.Log("OUT OF BOUNDS");
+
+        yield return null;
+
+        //Apagar Aviso UI
     }
 
     IEnumerator RoomOutOfBounds(string groupID)
