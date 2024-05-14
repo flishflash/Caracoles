@@ -60,11 +60,12 @@ public class RoomBehaviour : MonoBehaviour
     {
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~layersToIngore))
         {
-            if (errase)
+            if (errase && hit.transform.GetComponent<Tile>() != null)
             {
                 gridManager.ErraseRoom(hit.transform.GetComponent<Tile>().groupID);
             }
-            else if (currentRoomToPlace.name != null && hit.transform.GetComponent<Tile>().isAccesible)
+            else if (currentRoomToPlace.name != null && hit.transform.GetComponent<Tile>() != null 
+                && hit.transform.GetComponent<Tile>().isAccesible)
             {
                gridManager.SetAllTilesInOtherGrid(currentRoomToPlace, hit.transform.GetComponent<Tile>());
             }
@@ -75,20 +76,23 @@ public class RoomBehaviour : MonoBehaviour
     {
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~layersToIngore))
         {
-            if (errase)
+            if (errase && hit.transform.GetComponent<Tile>() != null)
             {
                 hit.transform.GetComponent<Tile>().ClearTile();
             }
-            else if (currentObjToPlace != null && currentObjToPlace.GetComponent<ArtifactDetails>() != null &&
+            else if (currentObjToPlace != null && currentObjToPlace.GetComponent<ArtifactDetails>() != null
+                && hit.transform.GetComponent<Tile>() != null &&
                 CheckIfObjFits(currentObjToPlace.GetComponent<ArtifactDetails>(), hit.transform.GetComponent<Tile>(), hit.transform.GetComponent<Tile>().tileState != -1))
             {
                 hit.transform.GetComponent<Tile>().SetInnerTile(currentObjToPlace.GetComponent<PrefabID>());
             }
-            else if (currentObjToPlace == null && hit.transform.GetComponent<Tile>().isAccesible)
+            else if (currentObjToPlace == null && hit.transform.GetComponent<Tile>() != null 
+                && hit.transform.GetComponent<Tile>().isAccesible)
             {
                 hit.transform.GetComponent<Tile>().tileState = 0;
             }
-            else if (currentObjToPlace != null && currentObjToPlace.tag == "Door" && gridManager.CheckIfDoorPossible(hit.transform.GetComponent<Tile>()))
+            else if (currentObjToPlace != null && currentObjToPlace.tag == "Door" 
+                && hit.transform.GetComponent<Tile>() != null && gridManager.CheckIfDoorPossible(hit.transform.GetComponent<Tile>()))
             {
                 hit.transform.GetComponent<Tile>().tileState = gridManager.CheckDoorOrientation(hit.transform.GetComponent<Tile>());
             }
@@ -126,14 +130,16 @@ public class RoomBehaviour : MonoBehaviour
 
     void CheckIfEnableTile(Tile tile)
     {
+        int pow = 0;
         if (tile.tileState == -1)
         {
             for (int x = tile.tilePos.x - 1; x <= tile.tilePos.x + 1; x++)
             {
                 for (int y = tile.tilePos.y - 1; y <= tile.tilePos.y + 1; y++)
                 {
+                    pow++;
                     if (((x < gridManager.width && x >= 0) && (y < gridManager.height && y >= 0)) &&
-                        gridManager.tiles[x, y].tileState != -1) tile.isAccesible = true;
+                        gridManager.tiles[x, y].tileState != -1 && pow % 2 == 0) tile.isAccesible = true;
                 }
             }
         }
