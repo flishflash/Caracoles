@@ -3,16 +3,12 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class AxeAnimation : MonoBehaviour
+public class AxeBehaviour : TrapBehaviour
 {
-    public float speed;
     public float maxAngle;
-
     private bool _direction = false; // false = left, true = right
-    private float _currentAngle;
 
-    // Update is called once per frame
-    void Update()
+    public override void DoAnimation()
     {
         if (_direction == false)
         {
@@ -21,7 +17,7 @@ public class AxeAnimation : MonoBehaviour
                 transform.rotation = Quaternion.Euler(
                     transform.rotation.eulerAngles.x, 
                     transform.rotation.eulerAngles.y, 
-                    transform.rotation.eulerAngles.z - (speed * Time.deltaTime)
+                    transform.rotation.eulerAngles.z - (animationSpeed * Time.deltaTime)
                     );
             }
             else
@@ -42,7 +38,7 @@ public class AxeAnimation : MonoBehaviour
                 transform.rotation = Quaternion.Euler(
                     transform.rotation.eulerAngles.x,
                     transform.rotation.eulerAngles.y,
-                    transform.rotation.eulerAngles.z + (speed * Time.deltaTime)
+                    transform.rotation.eulerAngles.z + (animationSpeed * Time.deltaTime)
                     );
             }
             else
