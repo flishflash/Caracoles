@@ -16,6 +16,8 @@ public class SnailKnightBehaviour : MonoBehaviour
     private GameObject enemy;
     private StatsScript enemyStats;
 
+    public Animator animator;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -86,6 +88,7 @@ public class SnailKnightBehaviour : MonoBehaviour
         inCombat = false;
         isAttacking = false;
         agent.SetDestination(target);
+        animator.Play("Run");
     }
 
     private void Fight()
@@ -119,19 +122,30 @@ public class SnailKnightBehaviour : MonoBehaviour
 
     IEnumerator DealDamage()
     {
-        isAttacking = true;
-
         if (enemyStats != null)
         {
-            enemyStats.hp -= playerStats.dmg;
-            Debug.Log("Enemy hit");
             if (enemyStats.hp <= 0)
             {
                 ExitCombat();
+                yield break;
+            }
+            else
+            {
+                isAttacking = true;
+                animator.Play("Attack");
             }
         }
-        yield return new WaitForSeconds(playerStats.spe);
-        
+        yield return new WaitForSeconds(playerStats.spe / 2);
+
+        enemyStats.hp -= playerStats.dmg;
+        Debug.Log("Enemy hit");
+
+        yield return new WaitForSeconds(playerStats.spe / 2);
+
         isAttacking = false;
+        animator.Play("Run");
+
+        if (enemyStats == null || enemyStats.hp <= 0)
+            ExitCombat();
     }
 }
