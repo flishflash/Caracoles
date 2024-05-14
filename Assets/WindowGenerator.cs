@@ -21,7 +21,8 @@ public class WindowGenerator : MonoBehaviour
         {
             if (go.name == "Wall_Single" && Random.Range(0, 101) <= WindowSpawnRate)
             {
-                Instantiate(WindowPrefab, go.transform.position, go.transform.rotation);
+                GameObject win = Instantiate(WindowPrefab, go.transform.position, go.transform.rotation);
+                win.transform.parent = transform;
                 Destroy(go);
             }
         }
