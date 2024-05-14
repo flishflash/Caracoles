@@ -102,11 +102,13 @@ public class GridManager : MonoBehaviour
     public bool CheckIfDoorPossible(Tile tile)
     {
         int pow = 0;
+        int i = 0;
 
         for (int y = tile.tilePos.y - 1; y <= tile.tilePos.y + 1; y++)
         {
             for (int x = tile.tilePos.x - 1; x <= tile.tilePos.x + 1; x++)
             {
+                pow++;
                 if (((x < width && x >= 0) && (y < height && y >= 0)) &&
                     tiles[x, y].tileState != -1 && pow % 2 == 0
                     && tile.tilePos != new Vector2Int(x, y))
@@ -116,13 +118,13 @@ public class GridManager : MonoBehaviour
                         StartCoroutine(DoorOutOfBounds());
                         return false;
                     }
-                    pow++;
+                    i++;
                 }
                 
             }
         }
 
-        if (pow > 1 || pow == 0)
+        if (i > 1 || i == 0)
         {
             StartCoroutine(DoorOutOfBounds());
             return false;

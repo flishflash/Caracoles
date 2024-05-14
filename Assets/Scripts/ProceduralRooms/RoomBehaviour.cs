@@ -41,10 +41,10 @@ public class RoomBehaviour : MonoBehaviour
             else InputForRoom(out hit, ray);
         }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            OnMouseDown();
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    OnMouseDown();
+        //}
     }
 
     private void OnMouseDown()
@@ -140,6 +140,12 @@ public class RoomBehaviour : MonoBehaviour
                     pow++;
                     if (((x < gridManager.width && x >= 0) && (y < gridManager.height && y >= 0)) &&
                         gridManager.tiles[x, y].tileState != -1 && pow % 2 == 0) tile.isAccesible = true;
+                    if (((x < gridManager.width && x >= 0) && (y < gridManager.height && y >= 0)) &&
+                        gridManager.tiles[x, y].isDoor && pow % 2 == 0)
+                    {
+                        tile.isAccesible = false;
+                        break;
+                    }
                 }
             }
         }
