@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7929110273155104906}
+  - component: {fileID: 5597766057266900543}
   m_Layer: 0
   m_Name: Tile_Corner_3
   m_TagString: Untagged
@@ -35,6 +36,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &5597766057266900543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2198129268665675097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a53b135ac14d47e46a38114abd63f9a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WindowPrefab: {fileID: 919132149155446097, guid: acbd5ea898a340040bd6b29ff66b74a3,
+    type: 3}
+  WindowSpawnRate: 15
 --- !u!1001 &706863309081057001
 PrefabInstance:
   m_ObjectHideFlags: 0
