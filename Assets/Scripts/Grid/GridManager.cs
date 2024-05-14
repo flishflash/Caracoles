@@ -76,25 +76,49 @@ public class GridManager : MonoBehaviour
 
     void TileSorrounding(Tile tile)
     {
-        int pow = 0;
-        tile.tileState = 0;
-
-        for (int y = tile.tilePos.y - 1; y <= tile.tilePos.y + 1; y++)
+        if (tile.tileState < 400)
         {
-            for (int x = tile.tilePos.x - 1; x <= tile.tilePos.x + 1; x++)
+            int pow = 0;
+            tile.tileState = 0;
+
+            for (int y = tile.tilePos.y - 1; y <= tile.tilePos.y + 1; y++)
             {
-                pow++;
-                if (((x < width && x >= 0 ) && (y < height && y >= 0)) &&
-                    tiles[x, y].tileState != -1 && pow % 2 == 0
-                    && tile.tilePos != new Vector2Int(x, y) 
-                    && tile.tileState < 400)
+                for (int x = tile.tilePos.x - 1; x <= tile.tilePos.x + 1; x++)
                 {
-                    tile.tileState += (int)Mathf.Pow(2, pow);
+                    pow++;
+                    if (((x < width && x >= 0) && (y < height && y >= 0)) &&
+                        tiles[x, y].tileState != -1 && pow % 2 == 0
+                        && tile.tilePos != new Vector2Int(x, y))
+                    {
+                        tile.tileState += (int)Mathf.Pow(2, pow);
+                    }
                 }
             }
         }
 
         tile.SetTileState(tile.tileState);
+    }
+
+    public bool CheckIfDoorPossible(Tile tile)
+    {
+        int pow = 0;
+
+        for (int y = tile.tilePos.y - 1; y <= tile.tilePos.y + 1; y++)
+        {
+            for (int x = tile.tilePos.x - 1; x <= tile.tilePos.x + 1; x++)
+            {
+                if (((x < width && x >= 0) && (y < height && y >= 0)) &&
+                    tiles[x, y].tileState != -1 && pow % 2 == 0
+                    && tile.tilePos != new Vector2Int(x, y))
+                {
+                    pow++;
+                }
+                if (tiles[x, y].isDoor) return false;
+            }
+        }
+
+        if (pow > 1 || pow == 0) return false;
+        else return true;
     }
 
     public int CheckDoorOrientation(Tile tile)

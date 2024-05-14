@@ -88,7 +88,7 @@ public class RoomBehaviour : MonoBehaviour
             {
                 hit.transform.GetComponent<Tile>().tileState = 0;
             }
-            else if (currentObjToPlace != null && currentObjToPlace.tag == "Door")
+            else if (currentObjToPlace != null && currentObjToPlace.tag == "Door" && gridManager.CheckIfDoorPossible(hit.transform.GetComponent<Tile>()))
             {
                 hit.transform.GetComponent<Tile>().tileState = gridManager.CheckDoorOrientation(hit.transform.GetComponent<Tile>());
             }
