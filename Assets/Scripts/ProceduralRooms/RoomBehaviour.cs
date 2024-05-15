@@ -41,10 +41,10 @@ public class RoomBehaviour : MonoBehaviour
             else InputForRoom(out hit, ray);
         }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            OnMouseDown();
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    OnMouseDown();
+        //}
     }
 
     private void OnMouseDown()
@@ -69,6 +69,8 @@ public class RoomBehaviour : MonoBehaviour
             {
                gridManager.SetAllTilesInOtherGrid(currentRoomToPlace, hit.transform.GetComponent<Tile>());
             }
+
+            gridManager.GenerateCorridor();
         }
     }
 

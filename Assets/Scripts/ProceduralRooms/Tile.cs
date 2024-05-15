@@ -4,6 +4,7 @@ public class Tile : MonoBehaviour
 {
     public int tileState = -1;
     public bool isDoor = false;
+    public bool isUsed = false;
     public bool isAccesible = true;
     public Vector2Int tilePos = new Vector2Int();
     public innerTiles _innerTiles = new innerTiles();

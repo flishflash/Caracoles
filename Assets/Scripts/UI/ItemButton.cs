@@ -15,8 +15,7 @@ public class ItemButton : MonoBehaviour
     ButtonsBehaviour buttonsBehaviour;
     private void Start()
     {
-
-        GetComponent<Image>().sprite = item.GetComponent<OnGui>().sprite;
+        if (item != null) GetComponent<Image>().sprite = item.GetComponent<OnGui>().sprite;
 
         buttonsBehaviour = GameObject.Find("ButtonManager").GetComponent<ButtonsBehaviour>();
 

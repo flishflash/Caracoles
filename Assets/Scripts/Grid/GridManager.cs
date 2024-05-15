@@ -7,6 +7,8 @@ public class GridManager : MonoBehaviour
     [SerializeField] public int width, height;
     [SerializeField] private GameObject tilePref;
     public Tile[,] tiles;
+    List<Tile> corridorTiles = new List<Tile>();
+    List<Tile> doorTiles = new List<Tile>();
 
     private void Start()
     {
@@ -119,8 +121,7 @@ public class GridManager : MonoBehaviour
                         return false;
                     }
                     i++;
-                }
-                
+                }       
             }
         }
 
@@ -188,6 +189,105 @@ public class GridManager : MonoBehaviour
         }
     }
 
+    public void GenerateCorridor()
+    {
+        foreach (var door in doorTiles)
+        {
+            door.isUsed = false;
+        }
+        doorTiles.Clear();
+        doorTiles.TrimExcess();
+        foreach (var item in corridorTiles)
+        {
+            item.tileState = -1;
+        }
+        corridorTiles.Clear();
+        corridorTiles.TrimExcess();
+
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                if (tiles[x, y].isDoor)
+                {
+                    switch (tiles[x, y].tileState)
+                    {
+                        case 402:
+                            tiles[x, y + 1].groupID = tiles[x, y].groupID;
+                            doorTiles.Add(tiles[x, y + 1]);
+                            break;
+                        case 404:
+                            tiles[x + 1, y].groupID = tiles[x, y].groupID;
+                            doorTiles.Add(tiles[x + 1, y]);
+                            break;
+                        case 406:
+                            tiles[x - 1, y].groupID = tiles[x, y].groupID;
+                            doorTiles.Add(tiles[x - 1, y]);
+                            break;
+                        case 408:
+                            tiles[x, y - 1].groupID = tiles[x, y].groupID;
+                            doorTiles.Add(tiles[x, y - 1]);
+                            break;
+                    }
+                }
+            }
+        }
+
+        foreach (var door in doorTiles)
+        {
+            CalculateCorridor(door, LookForDoorTile(door));
+        }
+        CalculateAllTileState();
+    }
+
+    public Tile LookForDoorTile(Tile firstDoor)
+    {
+        foreach (var door in doorTiles)
+        {
+            if (!door.isUsed && !door.groupID.Equals(firstDoor.groupID))
+            {
+                door.tileState = 0;
+                firstDoor.tileState = 0;
+                firstDoor.isUsed = true;
+                door.isUsed = true;
+                return door;
+            }
+        }
+
+        return null;
+    }
+
+    public void CalculateCorridor(Tile startTile, Tile endTile)
+    {
+        if (endTile != null)
+        {
+            int pow = 0;
+            Vector2Int tilePos = startTile.tilePos;
+            float lastDistance = Vector2Int.Distance(startTile.tilePos, endTile.tilePos);
+
+            for (int y = startTile.tilePos.y - 1; y <= startTile.tilePos.y + 1; y++)
+            {
+                for (int x = startTile.tilePos.x - 1; x <= startTile.tilePos.x + 1; x++)
+                {
+                    pow++;
+                    if (((x < width && x >= 0) && (y < height && y >= 0)) &&
+                        tiles[x, y].tileState == -1 && pow % 2 == 0
+                        && lastDistance > Vector2Int.Distance(tiles[x, y].tilePos, endTile.tilePos))
+                    {
+                        lastDistance = Vector2Int.Distance(tiles[x, y].tilePos, endTile.tilePos);
+                        tilePos = new Vector2Int(x, y);
+                    }
+                }
+            }
+
+            if (tiles[tilePos.x, tilePos.y].tilePos != endTile.tilePos)
+            {
+                corridorTiles.Add(tiles[tilePos.x, tilePos.y]);
+                tiles[tilePos.x, tilePos.y].tileState = 0;
+                CalculateCorridor(tiles[tilePos.x, tilePos.y], endTile);
+            }
+        }
+    }
 
     IEnumerator DoorOutOfBounds()
     {

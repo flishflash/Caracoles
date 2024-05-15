@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 758865710845661958}
   - component: {fileID: 7404441316637363039}
+  - component: {fileID: -1005865414412101758}
   - component: {fileID: 8134022056502999275}
   m_Layer: 0
   m_Name: DoorButtonPrefab
@@ -52,6 +53,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GUID: 1704992a-0039-438a-924d-14c0d7e5f75b
   prefab: {fileID: 0}
+--- !u!114 &-1005865414412101758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 669410622143556673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 015838ff8912898459c903dc003c67f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
 --- !u!222 &8134022056502999275
 CanvasRenderer:
   m_ObjectHideFlags: 0

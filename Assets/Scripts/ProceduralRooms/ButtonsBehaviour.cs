@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-
+using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -89,6 +89,11 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
             go.GetComponent<ItemButton>().room = rooms[i];
             roomBehaviour.SetCurrentRoomToPlace(go.GetComponent<ItemButton>().room);
         }
+    }
+
+    public void StartSimulation()
+    {
+        roomBehaviour.gridManager.GetComponent<NavMeshSurface>().BuildNavMesh();
     }
 
     public void SetSelectedItem(ItemButton itemButton)
