@@ -79,8 +79,11 @@ public class Tile : MonoBehaviour
         }
     }
 
-    public void ClearTile()
+    public void ClearTile(out int doorCountBack, int doorCount)
     {
+        doorCountBack = doorCount;
+        if (tileState > 400) doorCountBack = doorCount-1;
+
         tileState = -1;
         isAccesible = true;
 

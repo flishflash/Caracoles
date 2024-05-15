@@ -49,7 +49,7 @@ public class GridManager : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                if (tiles[x, y].groupID == groupID && groupID != "") tiles[x, y].ClearTile();
+                if (tiles[x, y].groupID == groupID && groupID != "") tiles[x, y].ClearTile(out int i,0);
             }
         }
     }

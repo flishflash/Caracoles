@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class RoomBehaviour : MonoBehaviour
 {
@@ -18,8 +19,15 @@ public class RoomBehaviour : MonoBehaviour
 
     bool isRoom;
 
+    int doorCount;
+
+    Button saveButton;
+
     private void Start()
     {
+        saveButton = GameObject.Find("Save").GetComponent<Button>();
+        saveButton.interactable = false;
+
         if (SceneManager.GetActiveScene().name == "BuildRoomScene")
         {
             isRoom = true;
@@ -28,6 +36,7 @@ public class RoomBehaviour : MonoBehaviour
         {
             isRoom = false;
         }
+        doorCount = 0;
     }
 
     private void Update()
@@ -80,7 +89,8 @@ public class RoomBehaviour : MonoBehaviour
         {
             if (errase && hit.transform.GetComponent<Tile>() != null)
             {
-                hit.transform.GetComponent<Tile>().ClearTile();
+                hit.transform.GetComponent<Tile>().ClearTile(out doorCount, doorCount);
+                if (doorCount < 2) saveButton.interactable = false;
             }
             else if (currentObjToPlace != null && currentObjToPlace.GetComponent<ArtifactDetails>() != null
                 && hit.transform.GetComponent<Tile>() != null &&
@@ -88,15 +98,18 @@ public class RoomBehaviour : MonoBehaviour
             {
                 hit.transform.GetComponent<Tile>().SetInnerTile(currentObjToPlace.GetComponent<PrefabID>());
             }
-            else if (currentObjToPlace == null && hit.transform.GetComponent<Tile>() != null 
+            else if (currentObjToPlace == null && hit.transform.GetComponent<Tile>() != null
                 && hit.transform.GetComponent<Tile>().isAccesible)
             {
                 hit.transform.GetComponent<Tile>().tileState = 0;
             }
-            else if (currentObjToPlace != null && currentObjToPlace.tag == "Door" 
-                && hit.transform.GetComponent<Tile>() != null && gridManager.CheckIfDoorPossible(hit.transform.GetComponent<Tile>()))
+            else if (currentObjToPlace != null && currentObjToPlace.tag == "Door"
+                && hit.transform.GetComponent<Tile>() != null && gridManager.CheckIfDoorPossible(hit.transform.GetComponent<Tile>())
+                && doorCount < 2)
             {
+                doorCount++;
                 hit.transform.GetComponent<Tile>().tileState = gridManager.CheckDoorOrientation(hit.transform.GetComponent<Tile>());
+                if (doorCount >= 2) saveButton.interactable = true;
             }
 
             gridManager.SetAllToNotAccesible();

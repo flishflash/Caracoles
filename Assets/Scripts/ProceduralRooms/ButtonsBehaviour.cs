@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -16,12 +17,17 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
     GameObject Mask;
     RoomBehaviour roomBehaviour;
 
+    TextMeshProUGUI warning;
+
     private void Start()
     {
         getAllPrefabs = GameObject.Find("PrefabManager").GetComponent<GetAllPrefabs>();
         roomBehaviour = GameObject.Find("RoomBehaviour").GetComponent<RoomBehaviour>();
+        warning = GameObject.Find("Warning").GetComponent<TextMeshProUGUI>();
         Mask = GameObject.Find("Content");
 
+        warning.gameObject.SetActive(false);
+        
         if (SceneManager.GetActiveScene().name == "GameScene")
         {
             StartCoroutine(loadRooms());
@@ -76,6 +82,7 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
         {
             go = Instantiate(ItemButton, Mask.transform);
             go.GetComponent<ItemButton>().item = getAllPrefabs.allPrefabs[i];
+            go.name = getAllPrefabs.allPrefabs[i].name;
         }
     }
 
@@ -98,6 +105,7 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
 
     public void SetSelectedItem(ItemButton itemButton)
     {
+        StartCoroutine(PopWarning(itemButton));
         roomBehaviour.SetCurrentObjectToPlace(itemButton.item);
     }
 
@@ -120,6 +128,14 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
     {
         yield return new WaitForFixedUpdate();
         InstanciateRoomButtons();
+    }
+
+    IEnumerator PopWarning(ItemButton item)
+    {
+        warning.gameObject.SetActive(true);
+        warning.text = item == null ? "floor" : item.name;
+        yield return new WaitForSeconds(0.5f);
+        warning.gameObject.SetActive(false);
     }
 
     public void LoadData(GameData gameData)
