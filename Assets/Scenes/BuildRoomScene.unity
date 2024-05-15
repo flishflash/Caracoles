@@ -241,8 +241,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 97f88d3b07fda214e81c4204c6df404a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2145,6 +2145,37 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3482823311502229930, guid: 999889cbf01c24940b1bd7e25e61e5fe,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482823311502229930, guid: 999889cbf01c24940b1bd7e25e61e5fe,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 69343ababcdaf944b94ebc3906beb172,
+        type: 3}
+    - target: {fileID: 3482823311502229930, guid: 999889cbf01c24940b1bd7e25e61e5fe,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482823311502229930, guid: 999889cbf01c24940b1bd7e25e61e5fe,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482823311502229930, guid: 999889cbf01c24940b1bd7e25e61e5fe,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482823311502229930, guid: 999889cbf01c24940b1bd7e25e61e5fe,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5970685897087738370, guid: 999889cbf01c24940b1bd7e25e61e5fe,
         type: 3}
       propertyPath: m_Name
@@ -2193,7 +2224,7 @@ PrefabInstance:
     - target: {fileID: 6193606866257424013, guid: 999889cbf01c24940b1bd7e25e61e5fe,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 70
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 6193606866257424013, guid: 999889cbf01c24940b1bd7e25e61e5fe,
         type: 3}
