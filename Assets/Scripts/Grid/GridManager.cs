@@ -154,7 +154,7 @@ public class GridManager : MonoBehaviour
         return i;
     }
 
-    public void  CheckIfBoardEmpty()
+    public void CheckIfBoardEmpty()
     {
         bool ret = true;
         for (int x = 0; x < width; x++)

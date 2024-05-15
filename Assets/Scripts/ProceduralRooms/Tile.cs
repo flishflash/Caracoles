@@ -13,11 +13,13 @@ public class Tile : MonoBehaviour
     GetAllPrefabs getAllPrefabs;
 
     [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] ParticleSystem clearParticle;
     
     AllBuildingPrefabs allBuildingPrefabs;
 
     [HideInInspector]
     public string groupID;
+
 
     private void Start()
     {
@@ -90,6 +92,8 @@ public class Tile : MonoBehaviour
         currentInnerTile = null;
 
         groupID = "";
+
+        Instantiate(clearParticle, transform.position, Quaternion.identity);
     }
 
     public void SetInnerTile(PrefabID objectID)
