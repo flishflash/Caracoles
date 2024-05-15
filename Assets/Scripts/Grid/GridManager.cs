@@ -271,7 +271,7 @@ public class GridManager : MonoBehaviour
                 {
                     pow++;
                     if (((x < width && x >= 0) && (y < height && y >= 0)) &&
-                        tiles[x, y].tileState == -1 && pow % 2 == 0
+                        (tiles[x, y].tileState == -1 || tiles[x, y].tileState == 0) && pow % 2 == 0
                         && lastDistance > Vector2Int.Distance(tiles[x, y].tilePos, endTile.tilePos))
                     {
                         lastDistance = Vector2Int.Distance(tiles[x, y].tilePos, endTile.tilePos);
