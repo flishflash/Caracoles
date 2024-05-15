@@ -269,6 +269,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationSpeed: 300
+  dmg: 2
+  damageEnemies: 0
   clockwise: 0
 --- !u!114 &7332460337091924551
 MonoBehaviour:

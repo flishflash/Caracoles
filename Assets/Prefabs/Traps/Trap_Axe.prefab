@@ -266,6 +266,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationSpeed: 100
+  dmg: 3
+  damageEnemies: 0
   maxAngle: 60
 --- !u!114 &5108142120529359026
 MonoBehaviour:

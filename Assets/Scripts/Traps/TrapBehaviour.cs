@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class TrapBehaviour : MonoBehaviour
 {
-    public float animationSpeed;
-    public int dmg;
-
     public bool damageEnemies = false;
+    public int dmg;
+    public float animationSpeed;
 
     void Update()
     {
