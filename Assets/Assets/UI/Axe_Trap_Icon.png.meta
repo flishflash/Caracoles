@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d486fdff7a5032f4195ee267b20025b5
+guid: a566474be1992df47baf6ab2dee89d78
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,18 +105,40 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: AxeTrap_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1000
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24a20135918c26d429c64972fbbc6d11
+      internalID: -179875890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 3025c81730b397b4eb84dc38130ed2c0
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      AxeTrap_0: -179875890
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
