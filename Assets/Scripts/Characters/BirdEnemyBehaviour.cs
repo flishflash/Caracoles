@@ -14,7 +14,7 @@ public class BirdEnemyBehaviour : MonoBehaviour
     [SerializeField] private float detectionInterval = 1f; //in seconds
     [SerializeField] private float detectionRadius = 20f;
 
-    private StatsScript enemyStats;
+    public StatsScript enemyStats;
 
     bool isAttacking = false;
 
