@@ -108,7 +108,6 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
 
     public void LoadNewScene()
     {
-        DataPersistanceManager.instance.SaveGame();
         StartCoroutine(loadScene());
     }
     IEnumerator loadScene()
