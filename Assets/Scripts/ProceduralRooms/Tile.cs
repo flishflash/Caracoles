@@ -95,6 +95,7 @@ public class Tile : MonoBehaviour
 
         if (currentInnerTile != null)
         {
+            Instantiate(clearParticle, transform.position, Quaternion.identity);
             Destroy(currentInnerTile);
             currentInnerTile = null;
 
