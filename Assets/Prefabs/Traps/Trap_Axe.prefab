@@ -180,6 +180,7 @@ GameObject:
   - component: {fileID: 8057317210361641585}
   - component: {fileID: 7661933607436213808}
   - component: {fileID: 6758599797787773348}
+  - component: {fileID: 5108142120529359026}
   m_Layer: 0
   m_Name: Trap_Axe
   m_TagString: Untagged
@@ -266,3 +267,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationSpeed: 100
   maxAngle: 45
+--- !u!114 &5108142120529359026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6126759195365291724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 015838ff8912898459c903dc003c67f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: -179875890, guid: 8020156705298f94b89c0ff59fcf1ca0, type: 3}

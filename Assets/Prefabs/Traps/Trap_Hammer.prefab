@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 7850239633279801910}
   - component: {fileID: 7841065098393752006}
   - component: {fileID: 2630540184158615795}
+  - component: {fileID: 1345213217133988244}
   m_Layer: 0
   m_Name: Trap_Hammer
   m_TagString: Untagged
@@ -185,6 +186,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationSpeed: 300
   clockwise: 0
+--- !u!114 &1345213217133988244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2198352384179853952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 015838ff8912898459c903dc003c67f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: -806333963, guid: 3afce31595e0a384fa12f5993f0f775b, type: 3}
 --- !u!1 &8353385080749606086
 GameObject:
   m_ObjectHideFlags: 0
