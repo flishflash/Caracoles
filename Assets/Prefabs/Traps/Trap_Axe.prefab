@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationSpeed: 100
-  maxAngle: 45
+  maxAngle: 60
 --- !u!114 &5108142120529359026
 MonoBehaviour:
   m_ObjectHideFlags: 0

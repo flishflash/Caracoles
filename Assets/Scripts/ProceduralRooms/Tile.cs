@@ -83,17 +83,22 @@ public class Tile : MonoBehaviour
         tileState = -1;
         isAccesible = true;
 
-        if (currentFloor != null) Destroy(currentFloor);
+        if (currentFloor != null) 
+        { 
+            Instantiate(clearParticle, transform.position, Quaternion.identity);
+            Destroy(currentFloor); 
+        }
         currentFloor = null;
 
         _innerTiles.nameID = "";
 
-        if (currentInnerTile != null) Destroy(currentInnerTile);
-        currentInnerTile = null;
+        if (currentInnerTile != null)
+        {
+            Destroy(currentInnerTile);
+            currentInnerTile = null;
 
-        groupID = "";
-
-        Instantiate(clearParticle, transform.position, Quaternion.identity);
+            groupID = "";
+        }
     }
 
     public void SetInnerTile(PrefabID objectID)
