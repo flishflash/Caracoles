@@ -265,9 +265,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8de3030a279a774f85b2cec477a1403, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSpeed: 100
-  dmg: 3
   damageEnemies: 0
+  dmg: 3
+  animationSpeed: 100
   maxAngle: 60
 --- !u!114 &5108142120529359026
 MonoBehaviour:
@@ -281,4 +281,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 015838ff8912898459c903dc003c67f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: -179875890, guid: 8020156705298f94b89c0ff59fcf1ca0, type: 3}
+  sprite: {fileID: 21300000, guid: a566474be1992df47baf6ab2dee89d78, type: 3}
