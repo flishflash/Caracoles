@@ -50,10 +50,10 @@ public class RoomBehaviour : MonoBehaviour
             else InputForRoom(out hit, ray);
         }
 
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    OnMouseDown();
-        //}
+        if (Input.GetMouseButtonDown(0))
+        {
+            OnMouseDown();
+        }
     }
 
     private void OnMouseDown()
