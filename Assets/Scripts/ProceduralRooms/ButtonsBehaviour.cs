@@ -11,6 +11,7 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
     [SerializeField] GameObject ItemButton;
     [SerializeField] Sprite exitSprite;
     [SerializeField] Sprite startSprite;
+    [SerializeField] GameObject scrollView;
 
     [HideInInspector]
     public List<fatherRoom> rooms = new List<fatherRoom>();
@@ -29,6 +30,7 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
         endRoom = new fatherRoom();
 
         getAllPrefabs = GameObject.Find("PrefabManager").GetComponent<GetAllPrefabs>();
+        scrollView = GameObject.Find("Scroll View");
         roomBehaviour = GameObject.Find("RoomBehaviour").GetComponent<RoomBehaviour>();
         warning = GameObject.Find("Warning").GetComponent<TextMeshProUGUI>();
         Mask = GameObject.Find("Content");
@@ -64,6 +66,8 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
                 childObj.nameID = roomBehaviour.gridManager.tiles[x, y].transform.name;
                 childObj.tilePos = roomBehaviour.gridManager.tiles[x, y].tilePos;
                 childObj.tileState = roomBehaviour.gridManager.tiles[x, y].tileState;
+
+                childObj.isExit = false;
 
                 childObj._innerTiles = roomBehaviour.gridManager.tiles[x, y]._innerTiles;
 
@@ -104,8 +108,16 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
         for (int i = 0; i < rooms.Count; i++)
         {
             go = Instantiate(ItemButton, Mask.transform);
-            if (rooms[i].name == "StartRoom") go.GetComponent<ItemButton>().SetSprite(startSprite);
-            if (rooms[i].name == "EndRoom") go.GetComponent<ItemButton>().SetSprite(exitSprite);
+            if (rooms[i].name == "StartRoom")
+            {
+                go.GetComponent<ItemButton>().SetSprite(startSprite);
+                go.name = rooms[i].name;
+            }
+            if (rooms[i].name == "EndRoom")
+            {
+                go.GetComponent<ItemButton>().SetSprite(exitSprite);
+                go.name = rooms[i].name;
+            }
             go.GetComponent<ItemButton>().room = rooms[i];
             roomBehaviour.SetCurrentRoomToPlace(go.GetComponent<ItemButton>().room);
         }
@@ -137,6 +149,7 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
         endRoom.children.Add(room);
         room.tilePos = new Vector2Int(9, 10);
         room.tileState = 408;
+        room.isExit = true;
         endRoom.children.Add(room);
 
         rooms.Add(endRoom);
@@ -146,6 +159,7 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
     public void StartSimulation()
     {
         roomBehaviour.gridManager.GetComponent<NavMeshSurface>().BuildNavMesh();
+        scrollView.SetActive(false);
     }
 
     public void SetSelectedItem(ItemButton itemButton)

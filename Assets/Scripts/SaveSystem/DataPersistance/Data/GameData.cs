@@ -7,6 +7,8 @@ public struct roomTiles
 {
     public string nameID;
 
+    public bool isExit;
+
     public Vector2Int tilePos;
 
     public int tileState;

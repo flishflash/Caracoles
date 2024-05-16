@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -22,6 +23,9 @@ public class RoomBehaviour : MonoBehaviour
     int doorCount;
 
     Button saveButton;
+    Button endRoomButton;
+    Button startRoomButton;
+    Button simulateButton;
 
     private void Start()
     {
@@ -30,6 +34,12 @@ public class RoomBehaviour : MonoBehaviour
             saveButton = GameObject.Find("Save").GetComponent<Button>();
             saveButton.interactable = false;
         }
+        if (GameObject.Find("Simulate") != null)
+        {
+            simulateButton = GameObject.Find("Simulate").GetComponent<Button>();
+            simulateButton.interactable = false;
+        }
+
         gridManager = GameObject.Find("GridManager").GetComponent<GridManager>();
 
         if (SceneManager.GetActiveScene().name == "BuildRoomScene")
@@ -41,6 +51,22 @@ public class RoomBehaviour : MonoBehaviour
             isRoom = false;
         }
         doorCount = 0;
+
+        StartCoroutine(setButtons());
+    }
+
+    IEnumerator setButtons()
+    {
+        yield return new WaitForSeconds(1f);
+
+        if (GameObject.Find("StartRoom") != null)
+        {
+            startRoomButton = GameObject.Find("StartRoom").GetComponent<Button>();
+        }
+        if (GameObject.Find("EndRoom") != null)
+        {
+            endRoomButton = GameObject.Find("EndRoom").GetComponent<Button>();
+        }
     }
 
     private void Update()
@@ -80,7 +106,19 @@ public class RoomBehaviour : MonoBehaviour
             else if (currentRoomToPlace.name != null && hit.transform.GetComponent<Tile>() != null 
                 && hit.transform.GetComponent<Tile>().isAccesible)
             {
-               gridManager.SetAllTilesInOtherGrid(currentRoomToPlace, hit.transform.GetComponent<Tile>());
+                if (currentRoomToPlace.name == "StartRoom")
+                {
+                    startRoomButton.interactable = false;
+                    currentObjToPlace = null;
+                }
+                if (currentRoomToPlace.name == "EndRoom")
+                {
+                    endRoomButton.interactable = false;
+                    currentObjToPlace = null;
+                }
+                if (!endRoomButton.interactable && !startRoomButton.interactable) simulateButton.interactable = true;
+
+                gridManager.SetAllTilesInOtherGrid(currentRoomToPlace, hit.transform.GetComponent<Tile>());
             }
 
             gridManager.GenerateCorridor();
