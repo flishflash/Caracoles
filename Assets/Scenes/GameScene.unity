@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44402242, g: 0.49316543, b: 0.5722324, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!20 &153176560
 Camera:
   m_ObjectHideFlags: 0
@@ -475,7 +475,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &330426805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1517,7 +1517,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1857147044}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3727128126648274121, guid: 1f0e85d8b51927548bbbc5f69f5ad4dd,
         type: 3}
@@ -1537,7 +1537,7 @@ PrefabInstance:
     - target: {fileID: 5816497223204758435, guid: 1f0e85d8b51927548bbbc5f69f5ad4dd,
         type: 3}
       propertyPath: m_RootOrder
-      value: -1
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5816497223204758435, guid: 1f0e85d8b51927548bbbc5f69f5ad4dd,
         type: 3}
@@ -1610,12 +1610,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c382632ef4911bc47943f36a961270c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1609660007 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5816497223204758435, guid: 1f0e85d8b51927548bbbc5f69f5ad4dd,
-    type: 3}
-  m_PrefabInstance: {fileID: 1609660005}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1609660008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1793,31 +1787,14 @@ GameObject:
   - component: {fileID: 1857147044}
   - component: {fileID: 1857147043}
   - component: {fileID: 1857147042}
-  - component: {fileID: 1857147041}
+  - component: {fileID: 1857147045}
   m_Layer: 0
   m_Name: Ground Plane Stage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1857147041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1857147040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1308684972, guid: 8a9a760f95896c34689febc965510927, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mObserverBehaviour: {fileID: 1857147043}
-  mHiddenRoot: {fileID: 0}
-  mTargetName: 
-  mDatasetName: 
-  mCastedBehaviour: {fileID: 1857147043}
+  m_IsActive: 0
 --- !u!114 &1857147042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1882,7 +1859,7 @@ MonoBehaviour:
   mSelectedStageType: 0
   mPlaneReference: {fileID: 0}
   mMidAirReference: {fileID: 0}
-  mPreview: {fileID: 1857147041}
+  mPreview: {fileID: 1857147045}
 --- !u!4 &1857147044
 Transform:
   m_ObjectHideFlags: 0
@@ -1894,11 +1871,27 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1609660007}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1857147045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857147040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1308684972, guid: 8a9a760f95896c34689febc965510927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mObserverBehaviour: {fileID: 1857147043}
+  mHiddenRoot: {fileID: 0}
+  mTargetName: 
+  mDatasetName: 
+  mCastedBehaviour: {fileID: 1857147043}
 --- !u!1 &1966880159
 GameObject:
   m_ObjectHideFlags: 0
@@ -2168,7 +2161,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2078026542
 MonoBehaviour:
   m_ObjectHideFlags: 0

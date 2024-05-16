@@ -12,7 +12,9 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
 
     [HideInInspector]
     public List<fatherRoom> rooms = new List<fatherRoom>();
-    
+    fatherRoom startRoom;
+    fatherRoom endRoom;
+
     GetAllPrefabs getAllPrefabs;
     GameObject Mask;
     RoomBehaviour roomBehaviour;
@@ -21,6 +23,9 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
 
     private void Start()
     {
+        startRoom = new fatherRoom();
+        endRoom = new fatherRoom();
+
         getAllPrefabs = GameObject.Find("PrefabManager").GetComponent<GetAllPrefabs>();
         roomBehaviour = GameObject.Find("RoomBehaviour").GetComponent<RoomBehaviour>();
         warning = GameObject.Find("Warning").GetComponent<TextMeshProUGUI>();
@@ -36,6 +41,7 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
         {
             InstanciateItemButtons();
         }
+        SetExtraRooms();
     }
 
     public void SaveObj()
@@ -80,9 +86,12 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
 
         for (int i = 0; i < getAllPrefabs.allPrefabs.Count; i++)
         {
-            go = Instantiate(ItemButton, Mask.transform);
-            go.GetComponent<ItemButton>().item = getAllPrefabs.allPrefabs[i];
-            go.name = getAllPrefabs.allPrefabs[i].name;
+            if (getAllPrefabs.allPrefabs[i].name != "SnailKnightPrefab")
+            {
+                go = Instantiate(ItemButton, Mask.transform);
+                go.GetComponent<ItemButton>().item = getAllPrefabs.allPrefabs[i];
+                go.name = getAllPrefabs.allPrefabs[i].name;
+            }
         }
     }
 
@@ -96,6 +105,38 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
             go.GetComponent<ItemButton>().room = rooms[i];
             roomBehaviour.SetCurrentRoomToPlace(go.GetComponent<ItemButton>().room);
         }
+    }
+
+    void SetExtraRooms() 
+    {
+        startRoom.children = new List<roomTiles>();
+        startRoom.width = 16;
+        startRoom.height = 16;
+        startRoom.name = "StartRoom";
+        roomTiles room = new roomTiles();
+        room.tilePos = new Vector2Int(9, 9);
+        room.tileState = 4;
+        startRoom.children.Add(room);
+        room.tilePos = new Vector2Int(9, 10);
+        room.tileState = 408;
+        room._innerTiles.nameID = "15727028-b4ae-48f9-b969-24289dc03b45";
+        startRoom.children.Add(room);
+
+        endRoom.children = new List<roomTiles>();
+        endRoom.width = 16;
+        endRoom.height = 16;
+        endRoom.name = "StartRoom";
+        room = new roomTiles();
+        room.tilePos = new Vector2Int(9, 9);
+        room.tileState = 4;
+        room._innerTiles.nameID = "";
+        endRoom.children.Add(room);
+        room.tilePos = new Vector2Int(9, 10);
+        room.tileState = 408;
+        endRoom.children.Add(room);
+
+        rooms.Add(endRoom);
+        rooms.Add(startRoom);
     }
 
     public void StartSimulation()

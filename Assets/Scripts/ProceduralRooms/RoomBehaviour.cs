@@ -25,8 +25,12 @@ public class RoomBehaviour : MonoBehaviour
 
     private void Start()
     {
-        saveButton = GameObject.Find("Save").GetComponent<Button>();
-        saveButton.interactable = false;
+        if (GameObject.Find("Save") != null)
+        {
+            saveButton = GameObject.Find("Save").GetComponent<Button>();
+            saveButton.interactable = false;
+        }
+        gridManager = GameObject.Find("GridManager").GetComponent<GridManager>();
 
         if (SceneManager.GetActiveScene().name == "BuildRoomScene")
         {
