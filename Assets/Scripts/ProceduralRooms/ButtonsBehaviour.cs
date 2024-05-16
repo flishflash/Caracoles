@@ -118,6 +118,11 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
     {
         StartCoroutine(loadScene());
     }
+
+    public void DisableFinder()
+    {
+        GameObject.Find("Plane Finder").SetActive(false);
+    }
     IEnumerator loadScene()
     {
         yield return new WaitForFixedUpdate();

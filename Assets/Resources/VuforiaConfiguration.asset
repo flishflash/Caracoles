@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: VuforiaConfiguration
   m_EditorClassIdentifier: 
   vuforia:
-    vuforiaLicenseKey: 
-    ufoLicenseKey: QVd3aHhNMy8vLy8vQUFBQUtBK1lRVGFicTB3ZmlLcGYvVFA2UGljMlR0SGlSOWE2QUtncmNtZ2hJSTMzTHhNMHMwRk91M0svZFVvcUlpemR4c2VDUTNvQUdROWlJNG1jZkQ4ZG9IOHVGVHVIZ0hxNFl6UFd0OVVSZk9jNHhwTk1yVEhoM0lmRzhwaVY5eFpHak5keW1nZE9nQzh0TzRGck50N0FZbUdpcHZhRUhWbE5BWVAzWFV3eitMbmdSRmRtWmU4R0NzalBJakZDLzBwQzdtZFE4S1duc1ZaTjlvRm80QzhGcjlLcjRLZE5zMGc3TVozeU5vM2lBdnRyYXh3Y2MxNFdhTUs1ZEVoQWtJMjRmcGNaQm9kVStHSHEyK0Zsa3o1ODJSZUI5SFRJUm5sK0hHTUg5QmZQTnBtWlhwK3RjOTJINVdCQ2NGVVE3N2hSSm9DUDBXOXZOQnIzTzE0Y0w0VGNxVUlYVjhVbGFHQnVkbWY3YlNFb3JtN1g=
+    vuforiaLicenseKey: ATIQjzv/////AAABmYW4xzslik3lh5o1GAp8U2Nzz9AlFNUyHwf84l230q44Y1AGOqsw3EgX8e2clDcD5XpJXbJ0AN33kTZK+RQ3MxerTBAEAf8Hm2HRBubf/TviA5bmGhqqBSPaYAT35tv0lRno9F98Ax7C5PjxgRmLjaEmWee/0XXIkjMNFthTQaChyh3/jPxyp/Ubbq1lWvJwECffKIsnarwuxcpxnEJP8zRgVMiDu3HSGRj49LboH5mGfwYV7ZrkpnkKctTrj4kLWVh1mG8ZgAq1OiysAbvTGPZY5aiNv9+jeOiDA7x/F7JwKGR/655ZswpP4Ny8iNLSLp/nuQvmLDoYR1Khx49UYsk8l7afO+GtR0GCfRtb4Z1R
+    ufoLicenseKey: QWRYZ0Uxai8vLy8vQUFBQUtQM3pnWWo0YjAzb3JmemJKcUVvdEpaVGZKV2M3TnBMOEw5MUVlNWt1Q3pRcHBWQVF5V3ZHMWQwaW14K0xjeUlWL1FXV0tUOThkU0NVN0haM3VIRGMxMHlKd0Rhb0RsZ3ZoYUZWM3FwQWhhVHlQcVhyMVFLekFSL0xRTmFnbG91RlJRdmhPTFgzUDloenJNVVd2bGFjQjFuTk84b1M5N3pORlBlczVLelI4Z1A5M3dkVFhjNkQ3Sy9haSs1enJTbVVLL0tuT0xvMmF0Wkt6UTY0TG9xVk5KUVREbVMydFhJQzArL3ppck1TQjNBcW0wbmhkbE5OaVRKUnlkaHZnMHBZNk1TMklZKzRBc0tBdDhsUWJvNmlKckFheGZuY0hKcGVPYXN4akhqelFTbmxnSnJZSG5rSExpak1BendXenI3eWE0aWNCK0JsZ3lHbW5BYUNkL0NCNnkzamQzWDFUSzhGZmRDS0YwLzNydFk=
     delayedInitialization: 0
     cameraFocusModeSetting: 2
     cameraDeviceModeSetting: -1
@@ -33,7 +33,7 @@ MonoBehaviour:
     unlitTransparentShader: {fileID: 10750, guid: 0000000000000000f000000000000000,
       type: 0}
   runtimeResources:
-    register: {fileID: 11400000, guid: caeba6ecda451416c803389918ddea4a, type: 2}
+    register: {fileID: 11400000, guid: 41fc44d3a90764cc7b50f1019f2d8310, type: 2}
   videoBackground:
     numDivisions: 2
     videoBackgroundShader: {fileID: 4800000, guid: 144dfca22ac584ade9e538e24a5ddded,
