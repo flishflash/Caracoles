@@ -158,4 +158,9 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
             gameData.allCraftedRooms.Add(room);
         }
     }
+
+    public void Exit()
+    {
+        SceneManager.LoadScene("SelectGamemode");
+    }
 }
