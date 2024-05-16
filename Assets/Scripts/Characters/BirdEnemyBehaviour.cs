@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class BirdEnemyBehaviour : MonoBehaviour
 {
+    bool active = false;
+
     private NavMeshAgent agent;
 
-    public GameObject player;
+    private GameObject player;
     private SnailKnightBehaviour knightScript;
 
     [SerializeField] private float detectionInterval = 1f; //in seconds
@@ -18,24 +21,52 @@ public class BirdEnemyBehaviour : MonoBehaviour
 
     bool isAttacking = false;
 
+    private ButtonsBehaviour buttonScript;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         enemyStats = GetComponent<StatsScript>();
 
-        knightScript = player.GetComponent<SnailKnightBehaviour>();
-
-        if (player != null)
-            InvokeRepeating("FindPlayer", 0f, detectionInterval);
+        buttonScript = GameObject.Find("ButtonManager").GetComponent<ButtonsBehaviour>();
     }
 
     void Update()
     {
-        if (knightScript.inCombat)
+        if (!active)
+        {
+            if (buttonScript != null)
+            {
+                if (buttonScript.isSimulating)
+                {
+                    active = true;
+                }
+            }
+        }
+        else
         {
             if (player != null)
             {
-                Fight();
+                player = GameObject.FindGameObjectWithTag("Player");
+                if (player != null)
+                    knightScript = player.GetComponent<SnailKnightBehaviour>();
+            }
+            if (knightScript != null)
+            {
+                if (!knightScript.inCombat)
+                {
+                    if (player != null)
+                    {
+                        InvokeRepeating("FindPlayer", 0f, detectionInterval);
+                    }
+                }
+                else
+                {
+                    if (player != null)
+                    {
+                        Fight();
+                    }
+                }
             }
         }
     }

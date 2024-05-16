@@ -5,6 +5,9 @@ using UnityEngine.AI;
 
 public class SnailKnightBehaviour : MonoBehaviour
 {
+    bool active = false;
+    bool hasTarget = false;
+
     private NavMeshAgent agent;
     Vector3 target = Vector3.zero;
 
@@ -18,26 +21,42 @@ public class SnailKnightBehaviour : MonoBehaviour
 
     public Animator animator;
 
+    private ButtonsBehaviour buttonScript;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         playerStats = GetComponent<StatsScript>();
         
-        agent.SetDestination(target);
+        buttonScript = GameObject.Find("ButtonManager").GetComponent<ButtonsBehaviour>();
     }
 
     void Update()
     {
-        if (inCombat)
+        if (!active)
         {
-            if (enemy != null)
+            if (buttonScript != null)
             {
-                Fight();
+                if (buttonScript.isSimulating)
+                {
+                    active = true;
+                }
             }
         }
         else
         {
-            agent.SetDestination(target);
+            if (!hasTarget)
+            {
+                agent.SetDestination(target);
+                hasTarget = true;
+            }
+            if (inCombat)
+            {
+                if (enemy != null)
+                {
+                    Fight();
+                }
+            }
         }
     }
 
@@ -80,6 +99,7 @@ public class SnailKnightBehaviour : MonoBehaviour
     void EnterCombat()
     {
         inCombat = true;
+        hasTarget = true;
         agent.SetDestination(enemy.transform.position);
     }
 
@@ -87,6 +107,7 @@ public class SnailKnightBehaviour : MonoBehaviour
     {
         inCombat = false;
         isAttacking = false;
+        hasTarget = false;
         agent.SetDestination(target);
         animator.Play("Run");
     }

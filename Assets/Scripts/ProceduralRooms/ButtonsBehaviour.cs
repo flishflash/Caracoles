@@ -21,6 +21,8 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
 
     TextMeshProUGUI warning;
 
+    [HideInInspector] public bool isSimulating = false;
+
     private void Start()
     {
         startRoom = new fatherRoom();
@@ -141,6 +143,7 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
 
     public void StartSimulation()
     {
+        isSimulating = true;
         roomBehaviour.gridManager.GetComponent<NavMeshSurface>().BuildNavMesh();
     }
 
