@@ -4,11 +4,11 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 27
-  productGUID: ae81eb44739dc0d4fbeac40dd9e19b98
+  productGUID: 9e706e3c7faad6d4794f38dba2948885
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
-  defaultScreenOrientation: 2
+  defaultScreenOrientation: 0
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
@@ -1039,12 +1039,12 @@ PlayerSettings:
   hmiLogStartupTiming: 0
   hmiCpuConfiguration: 
   apiCompatibilityLevel: 3
-  activeInputHandler: 2
+  activeInputHandler: 0
   windowsGamepadBackendHint: 0
   cloudProjectId: a7d3c628-15de-43b6-9aa9-41f1af021deb
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: VR-AR-Project
+  projectName: 
   organizationId: calentador
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 1
