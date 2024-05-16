@@ -1966,7 +1966,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 528504776}
         m_TargetAssemblyTypeName: ButtonsBehaviour, Assembly-CSharp
-        m_MethodName: SetErraser
+        m_MethodName: Exit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
