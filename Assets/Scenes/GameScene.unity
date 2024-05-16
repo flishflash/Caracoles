@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!20 &153176560
 Camera:
   m_ObjectHideFlags: 0
@@ -475,7 +475,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &330426805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1483,6 +1483,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemButton: {fileID: 1155108199642922384, guid: fb6010bbe79de1544b5f390bad042586,
     type: 3}
+  exitSprite: {fileID: 21300000, guid: 64dfcce7d35be114a8faccf4a69fd9bd, type: 3}
+  startSprite: {fileID: 21300000, guid: 62fae1c045449ce4b9ecf10108896b7e, type: 3}
   rooms: []
 --- !u!4 &1180802239
 Transform:

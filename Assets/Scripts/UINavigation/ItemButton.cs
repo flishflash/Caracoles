@@ -10,8 +10,6 @@ public class ItemButton : MonoBehaviour
     public GameObject item;
     public fatherRoom room;
 
-    private Image image;
-
     ButtonsBehaviour buttonsBehaviour;
     private void Start()
     {
@@ -29,5 +27,10 @@ public class ItemButton : MonoBehaviour
         {
             button.onClick.AddListener(() => buttonsBehaviour.SetSelectedRoom(this));
         }
+    }
+
+    public void SetSprite(Sprite image)
+    {
+        GetComponent<Image>().sprite = image;
     }
 }

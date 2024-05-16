@@ -9,6 +9,8 @@ using UnityEngine.SceneManagement;
 public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
 {
     [SerializeField] GameObject ItemButton;
+    [SerializeField] Sprite exitSprite;
+    [SerializeField] Sprite startSprite;
 
     [HideInInspector]
     public List<fatherRoom> rooms = new List<fatherRoom>();
@@ -102,6 +104,8 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
         for (int i = 0; i < rooms.Count; i++)
         {
             go = Instantiate(ItemButton, Mask.transform);
+            if (rooms[i].name == "StartRoom") go.GetComponent<ItemButton>().SetSprite(startSprite);
+            if (rooms[i].name == "EndRoom") go.GetComponent<ItemButton>().SetSprite(exitSprite);
             go.GetComponent<ItemButton>().room = rooms[i];
             roomBehaviour.SetCurrentRoomToPlace(go.GetComponent<ItemButton>().room);
         }
@@ -125,7 +129,7 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
         endRoom.children = new List<roomTiles>();
         endRoom.width = 16;
         endRoom.height = 16;
-        endRoom.name = "StartRoom";
+        endRoom.name = "EndRoom";
         room = new roomTiles();
         room.tilePos = new Vector2Int(9, 9);
         room.tileState = 4;
