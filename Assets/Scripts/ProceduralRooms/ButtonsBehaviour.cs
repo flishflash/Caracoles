@@ -69,7 +69,7 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
                 childObj.tilePos = roomBehaviour.gridManager.tiles[x, y].tilePos;
                 childObj.tileState = roomBehaviour.gridManager.tiles[x, y].tileState;
 
-                childObj.isExit = false;
+                childObj.isExit = roomBehaviour.gridManager.tiles[x, y].isExit;
 
                 childObj._innerTiles = roomBehaviour.gridManager.tiles[x, y]._innerTiles;
 
