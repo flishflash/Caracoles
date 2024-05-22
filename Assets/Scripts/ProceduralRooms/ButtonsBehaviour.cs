@@ -187,6 +187,7 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
         string timeStamp = System.DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss");
         string fileName = "Screenshot" + timeStamp + ".png";
         string pathToSave = fileName;
+        Debug.Log(pathToSave);
         ScreenCapture.CaptureScreenshot(pathToSave);
         yield return new WaitForEndOfFrame();
     }
