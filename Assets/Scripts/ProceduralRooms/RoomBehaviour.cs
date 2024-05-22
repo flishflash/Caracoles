@@ -19,7 +19,7 @@ public class RoomBehaviour : MonoBehaviour
 
     bool isRoom;
 
-    int doorCount;
+    public int doorCount;
 
     Button saveButton;
     Button endRoomButton;
@@ -79,20 +79,20 @@ public class RoomBehaviour : MonoBehaviour
             else InputForRoom(out hit, ray);
         }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            OnMouseDown();
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    OnMouseDown();
+        //}
     }
 
-    private void OnMouseDown()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
+    //private void OnMouseDown()
+    //{
+    //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    //    RaycastHit hit;
 
-        if (!isRoom) InputForDungeon(out hit, ray);
-        else InputForRoom(out hit, ray);
-    }
+    //    if (!isRoom) InputForDungeon(out hit, ray);
+    //    else InputForRoom(out hit, ray);
+    //}
 
     void InputForDungeon(out RaycastHit hit, Ray ray)
     {
