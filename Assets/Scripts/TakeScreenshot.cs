@@ -23,7 +23,7 @@ public class TakeScreenshot : MonoBehaviour
 		string timeStamp = System.DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss");
 		string fileName = "Screenshot" + timeStamp + ".png";
 		string pathToSave = fileName;
-		ScreenCapture.CaptureScreenshot(pathToSave);
+		NativeGallery.SaveImageToGallery(ScreenCapture.CaptureScreenshotAsTexture(), "Caracoles", fileName);
 		yield return new WaitForEndOfFrame();
 		canvas.SetActive(true);
 	}
