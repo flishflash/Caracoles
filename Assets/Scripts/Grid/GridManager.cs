@@ -291,6 +291,18 @@ public class GridManager : MonoBehaviour
         }
     }
 
+    public Vector3 SetHeroDestination()
+    {
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                if (tiles[x, y].isExit) return (Vector3Int)tiles[x, y].tilePos;
+            }
+        }
+
+        return Vector3.zero;      
+    }
     IEnumerator DoorOutOfBounds()
     {
         //Aviso UI
