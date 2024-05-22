@@ -22,6 +22,7 @@ public class SnailKnightBehaviour : MonoBehaviour
     public Animator animator;
 
     private ButtonsBehaviour buttonScript;
+    private GridManager gridManager;
 
     void Start()
     {
@@ -172,7 +173,14 @@ public class SnailKnightBehaviour : MonoBehaviour
 
     IEnumerator Wait1sec()
     {
+        gridManager = GameObject.Find("GridManager").GetComponent<GridManager>();
+
+        if (gridManager != null)
+            target = gridManager.SetHeroDestination();
+
         yield return new WaitForSeconds(1);
-        agent.SetDestination(target);
+
+        if (target != null)
+            agent.SetDestination(target);
     }
 }

@@ -297,7 +297,7 @@ public class GridManager : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                if (tiles[x, y].isExit) return (Vector3Int)tiles[x, y].tilePos;
+                if (tiles[x, y].isExit) return new Vector3(x-width/2, 0, y-height/2);
             }
         }
 
