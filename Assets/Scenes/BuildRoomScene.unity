@@ -591,6 +591,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 451490469}
     m_Modifications:
+    - target: {fileID: 3114250923730953045, guid: 7f670e8d22f2e804fb7f516797165215,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3653425991584105453, guid: 7f670e8d22f2e804fb7f516797165215,
         type: 3}
       propertyPath: m_Name
@@ -603,13 +608,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7632937293951563679, guid: 7f670e8d22f2e804fb7f516797165215,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 81.73825
+      objectReference: {fileID: 0}
+    - target: {fileID: 7632937293951563679, guid: 7f670e8d22f2e804fb7f516797165215,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.3
+      value: 0.43126
       objectReference: {fileID: 0}
     - target: {fileID: 7632937293951563679, guid: 7f670e8d22f2e804fb7f516797165215,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -11.3
+      value: -16.6
       objectReference: {fileID: 0}
     - target: {fileID: 7632937293951563679, guid: 7f670e8d22f2e804fb7f516797165215,
         type: 3}
@@ -676,6 +686,7 @@ GameObject:
   - component: {fileID: 451490466}
   - component: {fileID: 451490465}
   - component: {fileID: 451490464}
+  - component: {fileID: 451490470}
   m_Layer: 0
   m_Name: ARCamera
   m_TagString: MainCamera
@@ -829,6 +840,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &451490470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451490463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43f65e834586a5644a069d2d9698dc6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &460718232
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1956,7 +1979,7 @@ GameObject:
   - component: {fileID: 1748529303}
   - component: {fileID: 1748529302}
   - component: {fileID: 1748529301}
-  - component: {fileID: 1748529300}
+  - component: {fileID: 1748529304}
   m_Layer: 0
   m_Name: Ground Plane Stage
   m_TagString: Untagged
@@ -1964,23 +1987,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1748529300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1748529299}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1308684972, guid: 8a9a760f95896c34689febc965510927, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mObserverBehaviour: {fileID: 1748529302}
-  mHiddenRoot: {fileID: 0}
-  mTargetName: 
-  mDatasetName: 
-  mCastedBehaviour: {fileID: 1748529302}
 --- !u!114 &1748529301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2045,7 +2051,7 @@ MonoBehaviour:
   mSelectedStageType: 0
   mPlaneReference: {fileID: 0}
   mMidAirReference: {fileID: 0}
-  mPreview: {fileID: 1748529300}
+  mPreview: {fileID: 1748529304}
 --- !u!4 &1748529303
 Transform:
   m_ObjectHideFlags: 0
@@ -2062,6 +2068,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1748529304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748529299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1308684972, guid: 8a9a760f95896c34689febc965510927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mObserverBehaviour: {fileID: 1748529302}
+  mHiddenRoot: {fileID: 0}
+  mTargetName: 
+  mDatasetName: 
+  mCastedBehaviour: {fileID: 1748529302}
 --- !u!1 &1837972582
 GameObject:
   m_ObjectHideFlags: 0
@@ -2145,9 +2168,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 528504776}
-        m_TargetAssemblyTypeName: ButtonsBehaviour, Assembly-CSharp
-        m_MethodName: MakeScreenShoot
+      - m_Target: {fileID: 451490470}
+        m_TargetAssemblyTypeName: TakeScreenshot, Assembly-CSharp
+        m_MethodName: TakeAShot
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2215,13 +2238,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3565748503086326260, guid: d775eef48775ad348903758db96ddd5d,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 81.73825
+      objectReference: {fileID: 0}
+    - target: {fileID: 3565748503086326260, guid: d775eef48775ad348903758db96ddd5d,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.13126
       objectReference: {fileID: 0}
     - target: {fileID: 3565748503086326260, guid: d775eef48775ad348903758db96ddd5d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.4
+      value: 16.1
       objectReference: {fileID: 0}
     - target: {fileID: 3565748503086326260, guid: d775eef48775ad348903758db96ddd5d,
         type: 3}
@@ -2261,6 +2289,11 @@ PrefabInstance:
     - target: {fileID: 3565748503086326260, guid: d775eef48775ad348903758db96ddd5d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7466389015203891671, guid: d775eef48775ad348903758db96ddd5d,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

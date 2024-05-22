@@ -546,6 +546,7 @@ GameObject:
   - component: {fileID: 330426807}
   - component: {fileID: 330426806}
   - component: {fileID: 330426805}
+  - component: {fileID: 330426811}
   m_Layer: 0
   m_Name: ARCamera
   m_TagString: MainCamera
@@ -699,6 +700,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &330426811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330426804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43f65e834586a5644a069d2d9698dc6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &415486952
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1769,9 +1782,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1180802238}
-        m_TargetAssemblyTypeName: ButtonsBehaviour, Assembly-CSharp
-        m_MethodName: MakeScreenShoot
+      - m_Target: {fileID: 330426811}
+        m_TargetAssemblyTypeName: TakeScreenshot, Assembly-CSharp
+        m_MethodName: TakeAShot
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2751,6 +2764,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 330426810}
     m_Modifications:
+    - target: {fileID: 3114250923730953045, guid: 7f670e8d22f2e804fb7f516797165215,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3653425991584105453, guid: 7f670e8d22f2e804fb7f516797165215,
         type: 3}
       propertyPath: m_Name
@@ -2763,18 +2781,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7632937293951563679, guid: 7f670e8d22f2e804fb7f516797165215,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 78.39479
+      objectReference: {fileID: 0}
+    - target: {fileID: 7632937293951563679, guid: 7f670e8d22f2e804fb7f516797165215,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.29999948
+      value: 0.41975
       objectReference: {fileID: 0}
     - target: {fileID: 7632937293951563679, guid: 7f670e8d22f2e804fb7f516797165215,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -11.300001
+      value: -16.1
       objectReference: {fileID: 0}
     - target: {fileID: 7632937293951563679, guid: 7f670e8d22f2e804fb7f516797165215,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 30
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 7632937293951563679, guid: 7f670e8d22f2e804fb7f516797165215,
         type: 3}
@@ -2959,18 +2982,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3565748503086326260, guid: d775eef48775ad348903758db96ddd5d,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 78.39479
+      objectReference: {fileID: 0}
+    - target: {fileID: 3565748503086326260, guid: d775eef48775ad348903758db96ddd5d,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.11975
       objectReference: {fileID: 0}
     - target: {fileID: 3565748503086326260, guid: d775eef48775ad348903758db96ddd5d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.4
+      value: 15.7
       objectReference: {fileID: 0}
     - target: {fileID: 3565748503086326260, guid: d775eef48775ad348903758db96ddd5d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 30
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 3565748503086326260, guid: d775eef48775ad348903758db96ddd5d,
         type: 3}
@@ -3005,6 +3033,11 @@ PrefabInstance:
     - target: {fileID: 3565748503086326260, guid: d775eef48775ad348903758db96ddd5d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7466389015203891671, guid: d775eef48775ad348903758db96ddd5d,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
