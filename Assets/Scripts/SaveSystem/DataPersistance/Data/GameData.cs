@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +5,8 @@ using UnityEngine;
 public struct roomTiles
 {
     public string nameID;
+
+    public bool isExit;
 
     public Vector2Int tilePos;
 

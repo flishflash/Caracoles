@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: VuforiaConfiguration
   m_EditorClassIdentifier: 
   vuforia:
-    vuforiaLicenseKey: ATIQjzv/////AAABmYW4xzslik3lh5o1GAp8U2Nzz9AlFNUyHwf84l230q44Y1AGOqsw3EgX8e2clDcD5XpJXbJ0AN33kTZK+RQ3MxerTBAEAf8Hm2HRBubf/TviA5bmGhqqBSPaYAT35tv0lRno9F98Ax7C5PjxgRmLjaEmWee/0XXIkjMNFthTQaChyh3/jPxyp/Ubbq1lWvJwECffKIsnarwuxcpxnEJP8zRgVMiDu3HSGRj49LboH5mGfwYV7ZrkpnkKctTrj4kLWVh1mG8ZgAq1OiysAbvTGPZY5aiNv9+jeOiDA7x/F7JwKGR/655ZswpP4Ny8iNLSLp/nuQvmLDoYR1Khx49UYsk8l7afO+GtR0GCfRtb4Z1R
-    ufoLicenseKey: QWRYZ0Uxai8vLy8vQUFBQUtQM3pnWWo0YjAzb3JmemJKcUVvdEpaVGZKV2M3TnBMOEw5MUVlNWt1Q3pRcHBWQVF5V3ZHMWQwaW14K0xjeUlWL1FXV0tUOThkU0NVN0haM3VIRGMxMHlKd0Rhb0RsZ3ZoYUZWM3FwQWhhVHlQcVhyMVFLekFSL0xRTmFnbG91RlJRdmhPTFgzUDloenJNVVd2bGFjQjFuTk84b1M5N3pORlBlczVLelI4Z1A5M3dkVFhjNkQ3Sy9haSs1enJTbVVLL0tuT0xvMmF0Wkt6UTY0TG9xVk5KUVREbVMydFhJQzArL3ppck1TQjNBcW0wbmhkbE5OaVRKUnlkaHZnMHBZNk1TMklZKzRBc0tBdDhsUWJvNmlKckFheGZuY0hKcGVPYXN4akhqelFTbmxnSnJZSG5rSExpak1BendXenI3eWE0aWNCK0JsZ3lHbW5BYUNkL0NCNnkzamQzWDFUSzhGZmRDS0YwLzNydFk=
+    vuforiaLicenseKey: 
+    ufoLicenseKey: QVhwMnRQei8vLy8vQUFBQUtEUXp3eDBiOTAwNXVJM1NDV3JwRWt3elFzek9UR1paNGJaN2JyWXVMZms1K0ZkWGdhdGdoeVlRdjl5V3ZCc1p5RFF4dHk5WVRwVzRKWDA5V0UzUWFMVWpUY0JlN3F4YTgrNmJCbWtlUm9rMmpUN1JqZjRMUVE5WUNIQ0Uzb3QwaHc5c3YwRUhLR1d5V3duekhPTjcvT0s1NWJoazUwZm1qeVE2SW00aTI0SnpBdjVSTVIzMk5MVUtjMENHRWcrNWdHbmxzaEtOamIvWGl4QzRvSS9FMzRWdzVuZ3JDaEo1cWczT2FxSUt5T0tGd1FLZTdJVGhFNjlHY2FBOWtxWmlWNDB0UDFNam5ZN0V6SEtCVW1JejRhVGxkN2dUc28zV2Z1dTBPNTZPZnNIVHBFMmVKMG1Kb3gremozZitwN2NIUVhiSytYNVhzaDUwNTFSbHNzL1hra1V1OWRya3lYMFBhT01JaGZubUtaTng=
     delayedInitialization: 0
     cameraFocusModeSetting: 2
     cameraDeviceModeSetting: -1
@@ -44,11 +44,11 @@ MonoBehaviour:
     autoStartTracker: 1
     arcoreRequirement: 1
     autoImportArcore: 1
-    thirdPartyARCoreClientDetected: 1
+    thirdPartyARCoreClientDetected: 0
   playmode:
     mRecordingPath: 
     playModeType: 0
   webcam:
     renderTextureLayer: 30
   packageInformation:
-    ARFoundationVersion: 
+    ARFoundationVersion: 5.0.7

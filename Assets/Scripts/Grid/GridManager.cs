@@ -194,6 +194,7 @@ public class GridManager : MonoBehaviour
         foreach (var door in doorTiles)
         {
             door.isUsed = false;
+            door.tileState = -1;
         }
         doorTiles.Clear();
         doorTiles.TrimExcess();
@@ -203,6 +204,7 @@ public class GridManager : MonoBehaviour
         }
         corridorTiles.Clear();
         corridorTiles.TrimExcess();
+        CalculateAllTileState();
 
         for (int x = 0; x < width; x++)
         {

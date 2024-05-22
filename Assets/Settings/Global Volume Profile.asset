@@ -63,7 +63,7 @@ MonoBehaviour:
     m_Value: 1
   depth9TilesThreshold:
     m_OverrideState: 1
-    m_Value: 0.865
+    m_Value: 0.986
   depth9TilesBottomFix:
     m_OverrideState: 1
     m_Value: 0.0143

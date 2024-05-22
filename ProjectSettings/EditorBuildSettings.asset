@@ -28,4 +28,6 @@ EditorBuildSettings:
       guid: c15025f393d227e4ea6ec20afa22b46b, type: 2}
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 5a6b05ecee3c56d40b270d9396e0d3e2,
       type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 5188ef0cd5f632b41993f194868cdc8b,
+      type: 2}
   m_UseUCBPForAssetBundles: 0

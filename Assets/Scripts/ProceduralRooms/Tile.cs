@@ -5,6 +5,7 @@ public class Tile : MonoBehaviour
     public int tileState = -1;
     public bool isDoor = false;
     public bool isUsed = false;
+    public bool isExit = false;
     public bool isAccesible = true;
     public Vector2Int tilePos = new Vector2Int();
     public innerTiles _innerTiles = new innerTiles();
@@ -40,7 +41,6 @@ public class Tile : MonoBehaviour
 
     public bool isOccupied()
     {
-        Debug.Log(currentInnerTile != null);
         return currentInnerTile != null;
     }
 
@@ -72,6 +72,7 @@ public class Tile : MonoBehaviour
     {
         isAccesible = false;
         this.groupID = groupID;
+        isExit = roomTile.isExit;
         SetTileState(roomTile.tileState);
         if (getAllPrefabs.checkAllPrefabs(roomTile._innerTiles.nameID) != null)
         {
