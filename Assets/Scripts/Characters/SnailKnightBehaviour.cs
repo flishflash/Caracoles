@@ -47,8 +47,8 @@ public class SnailKnightBehaviour : MonoBehaviour
         {
             if (!hasTarget)
             {
-                agent.SetDestination(target);
                 hasTarget = true;
+                StartCoroutine("Wait1sec");
             }
             if (inCombat)
             {
@@ -168,5 +168,11 @@ public class SnailKnightBehaviour : MonoBehaviour
 
         if (enemyStats == null || enemyStats.hp <= 0)
             ExitCombat();
+    }
+
+    IEnumerator Wait1sec()
+    {
+        yield return new WaitForSeconds(1);
+        agent.SetDestination(target);
     }
 }
