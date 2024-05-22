@@ -2359,7 +2359,7 @@ MonoBehaviour:
   m_Script: {fileID: 2020821747, guid: 8a9a760f95896c34689febc965510927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AnchorStage: {fileID: 0}
+  AnchorStage: {fileID: 1857147043}
   DuplicateStage: 0
   OnContentPlaced:
     m_PersistentCalls:
