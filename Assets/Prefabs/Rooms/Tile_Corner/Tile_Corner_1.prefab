@@ -220,6 +220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1883829361155056828}
   - component: {fileID: -5336476021207881121}
+  - component: {fileID: -2474888896642713503}
   m_Layer: 2
   m_Name: Tile_Corner_1
   m_TagString: Untagged
@@ -264,6 +265,20 @@ MonoBehaviour:
   WindowPrefab: {fileID: 919132149155446097, guid: acbd5ea898a340040bd6b29ff66b74a3,
     type: 3}
   WindowSpawnRate: 15
+--- !u!114 &-2474888896642713503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4658617383278460391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 777021feb68d04d4a869b68af17a92d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animTime: 0.5
+  elementCadency: 0.1
 --- !u!1 &7261430718558580871
 GameObject:
   m_ObjectHideFlags: 0

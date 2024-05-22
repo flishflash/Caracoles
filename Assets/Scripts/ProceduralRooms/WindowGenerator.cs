@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.XR.CoreUtils;
@@ -12,14 +13,13 @@ public class WindowGenerator : MonoBehaviour
 
     private List<GameObject> _childsList = new List<GameObject>();
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         gameObject.GetChildGameObjects(_childsList);
 
         foreach (GameObject go in _childsList)
         {
-            if (go.name == "Wall_Single" && Random.Range(0, 101) <= WindowSpawnRate)
+            if (go.name == "Wall_Single" && UnityEngine.Random.Range(0, 101) <= WindowSpawnRate)
             {
                 GameObject win = Instantiate(WindowPrefab, go.transform.position, go.transform.rotation);
                 win.transform.parent = transform;
