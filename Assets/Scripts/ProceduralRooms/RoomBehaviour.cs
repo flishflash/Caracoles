@@ -98,29 +98,32 @@ public class RoomBehaviour : MonoBehaviour
     {
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~layersToIngore))
         {
-            if (errase && hit.transform.GetComponent<Tile>() != null)
+            if (hit.transform.tag != "Default")
             {
-                gridManager.ErraseRoom(hit.transform.GetComponent<Tile>().groupID);
-            }
-            else if (currentRoomToPlace.name != null && hit.transform.GetComponent<Tile>() != null 
-                && hit.transform.GetComponent<Tile>().isAccesible && 
-                ((currentRoomToPlace.name == "StartRoom" && startRoomButton.interactable) 
-                || (currentRoomToPlace.name == "EndRoom" && endRoomButton.interactable)))
-            {
-                if (currentRoomToPlace.name == "StartRoom")
+                if (errase && hit.transform.GetComponent<Tile>() != null)
                 {
-                    startRoomButton.interactable = false;
+                    gridManager.ErraseRoom(hit.transform.GetComponent<Tile>().groupID);
                 }
-                if (currentRoomToPlace.name == "EndRoom")
+                else if (currentRoomToPlace.name != null && hit.transform.GetComponent<Tile>() != null
+                    && hit.transform.GetComponent<Tile>().isAccesible &&
+                    ((currentRoomToPlace.name == "StartRoom" && startRoomButton.interactable)
+                    || (currentRoomToPlace.name == "EndRoom" && endRoomButton.interactable)))
                 {
-                    endRoomButton.interactable = false;
+                    if (currentRoomToPlace.name == "StartRoom")
+                    {
+                        startRoomButton.interactable = false;
+                    }
+                    if (currentRoomToPlace.name == "EndRoom")
+                    {
+                        endRoomButton.interactable = false;
+                    }
+                    if (!endRoomButton.interactable && !startRoomButton.interactable) simulateButton.interactable = true;
+
+                    gridManager.SetAllTilesInOtherGrid(currentRoomToPlace, hit.transform.GetComponent<Tile>());
                 }
-                if (!endRoomButton.interactable && !startRoomButton.interactable) simulateButton.interactable = true;
 
-                gridManager.SetAllTilesInOtherGrid(currentRoomToPlace, hit.transform.GetComponent<Tile>());
+                gridManager.GenerateCorridor();
             }
-
-            gridManager.GenerateCorridor();
         }
     }
 
@@ -128,34 +131,37 @@ public class RoomBehaviour : MonoBehaviour
     {
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~layersToIngore))
         {
-            if (errase && hit.transform.GetComponent<Tile>() != null)
+            if (hit.transform.tag != "Default")
             {
-                hit.transform.GetComponent<Tile>().ClearTile(out doorCount, doorCount);
-                if (doorCount < 2) saveButton.interactable = false;
-            }
-            else if (currentObjToPlace != null && currentObjToPlace.GetComponent<ArtifactDetails>() != null
-                && hit.transform.GetComponent<Tile>() != null &&
-                CheckIfObjFits(currentObjToPlace.GetComponent<ArtifactDetails>(), hit.transform.GetComponent<Tile>(), hit.transform.GetComponent<Tile>().tileState != -1))
-            {
-                hit.transform.GetComponent<Tile>().SetInnerTile(currentObjToPlace.GetComponent<PrefabID>());
-            }
-            else if (currentObjToPlace == null && hit.transform.GetComponent<Tile>() != null
-                && hit.transform.GetComponent<Tile>().isAccesible)
-            {
-                hit.transform.GetComponent<Tile>().tileState = 0;
-            }
-            else if (currentObjToPlace != null && currentObjToPlace.tag == "Door"
-                && hit.transform.GetComponent<Tile>() != null && gridManager.CheckIfDoorPossible(hit.transform.GetComponent<Tile>())
-                && doorCount < 2)
-            {
-                doorCount++;
-                hit.transform.GetComponent<Tile>().tileState = gridManager.CheckDoorOrientation(hit.transform.GetComponent<Tile>());
-                if (doorCount >= 2) saveButton.interactable = true;
-            }
+                if (errase && hit.transform.GetComponent<Tile>() != null)
+                {
+                    hit.transform.GetComponent<Tile>().ClearTile(out doorCount, doorCount);
+                    if (doorCount < 2) saveButton.interactable = false;
+                }
+                else if (currentObjToPlace != null && currentObjToPlace.GetComponent<ArtifactDetails>() != null
+                    && hit.transform.GetComponent<Tile>() != null &&
+                    CheckIfObjFits(currentObjToPlace.GetComponent<ArtifactDetails>(), hit.transform.GetComponent<Tile>(), hit.transform.GetComponent<Tile>().tileState != -1))
+                {
+                    hit.transform.GetComponent<Tile>().SetInnerTile(currentObjToPlace.GetComponent<PrefabID>());
+                }
+                else if (currentObjToPlace == null && hit.transform.GetComponent<Tile>() != null
+                    && hit.transform.GetComponent<Tile>().isAccesible)
+                {
+                    hit.transform.GetComponent<Tile>().tileState = 0;
+                }
+                else if (currentObjToPlace != null && currentObjToPlace.tag == "Door"
+                    && hit.transform.GetComponent<Tile>() != null && gridManager.CheckIfDoorPossible(hit.transform.GetComponent<Tile>())
+                    && doorCount < 2)
+                {
+                    doorCount++;
+                    hit.transform.GetComponent<Tile>().tileState = gridManager.CheckDoorOrientation(hit.transform.GetComponent<Tile>());
+                    if (doorCount >= 2) saveButton.interactable = true;
+                }
 
-            gridManager.SetAllToNotAccesible();
-            CheckNearTiles();
-            gridManager.CheckIfBoardEmpty();
+                gridManager.SetAllToNotAccesible();
+                CheckNearTiles();
+                gridManager.CheckIfBoardEmpty();
+            }
         }
     }
 
