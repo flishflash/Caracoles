@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vuforia:
     vuforiaLicenseKey: 
-    ufoLicenseKey: QVhwMnRQei8vLy8vQUFBQUtEUXp3eDBiOTAwNXVJM1NDV3JwRWt3elFzek9UR1paNGJaN2JyWXVMZms1K0ZkWGdhdGdoeVlRdjl5V3ZCc1p5RFF4dHk5WVRwVzRKWDA5V0UzUWFMVWpUY0JlN3F4YTgrNmJCbWtlUm9rMmpUN1JqZjRMUVE5WUNIQ0Uzb3QwaHc5c3YwRUhLR1d5V3duekhPTjcvT0s1NWJoazUwZm1qeVE2SW00aTI0SnpBdjVSTVIzMk5MVUtjMENHRWcrNWdHbmxzaEtOamIvWGl4QzRvSS9FMzRWdzVuZ3JDaEo1cWczT2FxSUt5T0tGd1FLZTdJVGhFNjlHY2FBOWtxWmlWNDB0UDFNam5ZN0V6SEtCVW1JejRhVGxkN2dUc28zV2Z1dTBPNTZPZnNIVHBFMmVKMG1Kb3gremozZitwN2NIUVhiSytYNVhzaDUwNTFSbHNzL1hra1V1OWRya3lYMFBhT01JaGZubUtaTng=
+    ufoLicenseKey: QWEzNVF0ci8vLy8vQUFBQUtMd2hEdDBNU1VleW9NRnRIZ2JOOGFweE51VkVOUm5lNTZua1NSYVhibk5OTEozZlFhTUdxWVdkY1oyRkRSYjdXTkliRktnRDNqZWJhaldVZVNoUkJiTkQ1azYya0EreFJ1MC8rN2JDTk96d3E2VlF4N2dUbC9lTEg5V3hqbFF4SVRGa3hxc1c3TUdYakloUjJTT1liMFljazVNTk9CMGZubUF0bk5XNlp0bDRpU05ibTlQRC9VanNCSGNMODVjaVppZVJ1ZHUzSEVuTk03ZUN0V0xBSWtNT3NqQzArem9GaVo4bjBQOVFsaHBGbDNZUXBhOGRMS1p3V3dBN2Q4SVlCMUtYRXhDSVhLOHhvUVhEcGNCUkozRVQ3RGJjd2o0Q25xdU1kQnBhSFNjUVc1cjRPR2p2SXg1ZTl2d1cvWjAyWTNrR3NncDd0MEZpRFhjdWVSQ0pJV1JxSTQ0YkEvWjYwUThqRElMR1pKV0M=
     delayedInitialization: 0
     cameraFocusModeSetting: 2
     cameraDeviceModeSetting: -1
@@ -23,7 +23,7 @@ MonoBehaviour:
     modelTargetRecoWhileExtendedTracked: 1
     shareRecordingsInITunes: 0
     logLevel: 0
-    version: 10.22.5
+    version: 10.0.2
     eulaAcceptedVersions: '{"Values":["","0.0","10.22"]}'
   database:
     disableModelExtraction: 0
@@ -33,7 +33,7 @@ MonoBehaviour:
     unlitTransparentShader: {fileID: 10750, guid: 0000000000000000f000000000000000,
       type: 0}
   runtimeResources:
-    register: {fileID: 11400000, guid: 41fc44d3a90764cc7b50f1019f2d8310, type: 2}
+    register: {fileID: 0}
   videoBackground:
     numDivisions: 2
     videoBackgroundShader: {fileID: 4800000, guid: 144dfca22ac584ade9e538e24a5ddded,
@@ -44,11 +44,11 @@ MonoBehaviour:
     autoStartTracker: 1
     arcoreRequirement: 1
     autoImportArcore: 1
-    thirdPartyARCoreClientDetected: 1
+    thirdPartyARCoreClientDetected: 0
   playmode:
     mRecordingPath: 
     playModeType: 0
   webcam:
     renderTextureLayer: 30
   packageInformation:
-    ARFoundationVersion: 5.0.7
+    ARFoundationVersion: 
