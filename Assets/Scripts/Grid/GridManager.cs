@@ -22,9 +22,10 @@ public class GridManager : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                tiles[x, y] = Instantiate(tilePref, new Vector3(x, 0, y) + transform.position, Quaternion.identity).GetComponent<Tile>();
+                tiles[x, y] = Instantiate(tilePref, new Vector3(x * (transform.localScale.x), 0, y * (transform.localScale.y)) + transform.position, Quaternion.identity).GetComponent<Tile>();
                 tiles[x, y].transform.forward = Vector3.up;
-                tiles[x, y].transform.parent = gameObject.transform;
+                tiles[x, y].transform.parent = transform;
+                tiles[x, y].transform.localScale = Vector3.one;
                 tiles[x, y].name = $"Tile {x}{y}";
                 tiles[x, y].SetTilePos(new Vector2Int(x, y));
             }
