@@ -23,6 +23,7 @@ public class WindowGenerator : MonoBehaviour
             {
                 GameObject win = Instantiate(WindowPrefab, go.transform.position, go.transform.rotation);
                 win.transform.parent = transform;
+                win.transform.localScale = Vector3.one;
                 Destroy(go);
             }
         }
