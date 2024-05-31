@@ -19,10 +19,13 @@ public class CreateTileAnimation : MonoBehaviour
 
         for (int i = 0; i < transform.childCount; i++)
         {
-            _childs.Add(transform.GetChild(i).gameObject);
-            _initialHeights.Add(transform.GetChild(i).localPosition.y);
-
-            transform.GetChild(i).localPosition += new Vector3(0, Random.Range(-1, -1.5f), 0);
+            GameObject child = transform.GetChild(i).gameObject;
+            if (!child.name.StartsWith("Collider"))
+            {
+                _childs.Add(child);
+                _initialHeights.Add(child.transform.localPosition.y);
+                child.transform.localPosition += new Vector3(0, Random.Range(-1, -1.5f), 0);
+            }
         }
         StartCoroutine(StartAnimation());
     }
