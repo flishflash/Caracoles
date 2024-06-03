@@ -22,12 +22,14 @@ public class SelectMode : MonoBehaviour
         if (Input.touchCount == 1 && Input.GetTouch(0).phase == touchPhase)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+            Debug.Log("");
             mousePick(ray);
         }
 
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Debug.Log("");
             mousePick(ray);
         }
     }
@@ -37,6 +39,7 @@ public class SelectMode : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
+            Debug.Log(hit.collider.gameObject.name);
             switch (hit.collider.gameObject.name)
             {
                 case "Exit":

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ItemButton : MonoBehaviour
 {
-    public GameObject item;
+    public GameObject item = null;
     public fatherRoom room;
 
     ButtonsBehaviour buttonsBehaviour;

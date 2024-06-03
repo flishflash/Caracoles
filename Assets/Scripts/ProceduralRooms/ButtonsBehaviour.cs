@@ -36,8 +36,6 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
         warning = GameObject.Find("Warning").GetComponent<TextMeshPro>();
         scrollView = GameObject.Find("Scroll View");
         Mask = GameObject.Find("Content");
-
-        warning.gameObject.SetActive(false);
         
         if (SceneManager.GetActiveScene().name == "GameScene")
         {
@@ -90,7 +88,9 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
     void InstanciateItemButtons()
     {
         GameObject go;
-        Instantiate(ItemButton, Mask.transform);
+        go = Instantiate(ItemButton, Mask.transform);
+        go.GetComponent<ItemButton>().item = null;
+        go.name = "Floor";
 
         for (int i = 0; i < getAllPrefabs.allPrefabs.Count; i++)
         {
