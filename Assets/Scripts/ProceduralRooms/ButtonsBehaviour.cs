@@ -22,7 +22,7 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
     GameObject Mask;
     RoomBehaviour roomBehaviour;
 
-    TextMeshProUGUI warning;
+    TextMeshPro warning;
 
     [HideInInspector] public bool isSimulating = false;
 
@@ -32,9 +32,9 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
         endRoom = new fatherRoom();
 
         getAllPrefabs = GameObject.Find("PrefabManager").GetComponent<GetAllPrefabs>();
-        scrollView = GameObject.Find("Scroll View");
         roomBehaviour = GameObject.Find("RoomBehaviour").GetComponent<RoomBehaviour>();
-        warning = GameObject.Find("Warning").GetComponent<TextMeshProUGUI>();
+        warning = GameObject.Find("Warning").GetComponent<TextMeshPro>();
+        scrollView = GameObject.Find("Scroll View");
         Mask = GameObject.Find("Content");
 
         warning.gameObject.SetActive(false);
