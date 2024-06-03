@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GridManager : MonoBehaviour
@@ -10,10 +11,23 @@ public class GridManager : MonoBehaviour
     List<Tile> corridorTiles = new List<Tile>();
     List<Tile> doorTiles = new List<Tile>();
 
+    TextMeshPro warning;
+
     private void Start()
     {
+        warning = GameObject.Find("Warning").GetComponent<TextMeshPro>();
+
+        transform.position = new Vector3(-(width/2) * transform.localScale.x, 0, 
+            -(height/2) * transform.localScale.z);
+
         tiles = new Tile[width, height];
         GenerateGrid();
+    }
+
+    public void CalculatePos()
+    {
+        transform.position = new Vector3(Camera.main.transform.position.x - ((width / 2) * transform.localScale.x), transform.position.y,
+                    Camera.main.transform.position.z - ((height / 2) * transform.localScale.z));
     }
 
     void GenerateGrid()
@@ -317,11 +331,14 @@ public class GridManager : MonoBehaviour
     IEnumerator RoomOutOfBounds(string groupID)
     {
         //Aviso UI
-        Debug.Log("OUT OF BOUNDS");
+        warning.gameObject.SetActive(true);
+        warning.text = "out of bounds";
 
         ErraseRoom(groupID);
-        yield return null;
+        yield return new WaitForSeconds(0.5f);
 
         //Apagar Aviso UI
+        warning.text = "";
+        warning.gameObject.SetActive(false);
     }
 }
