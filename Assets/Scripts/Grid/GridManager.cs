@@ -12,8 +12,17 @@ public class GridManager : MonoBehaviour
 
     private void Start()
     {
+        transform.position = new Vector3(-(width/2) * transform.localScale.x, 0, 
+            -(height/2) * transform.localScale.z);
+
         tiles = new Tile[width, height];
         GenerateGrid();
+    }
+
+    public void CalculatePos()
+    {
+        transform.position = new Vector3(Camera.main.transform.position.x - ((width / 2) * transform.localScale.x), transform.position.y,
+                    Camera.main.transform.position.z - ((height / 2) * transform.localScale.z));
     }
 
     void GenerateGrid()

@@ -8,23 +8,34 @@ public class RoomBehaviour : MonoBehaviour
 {
     //Change me to change the touch phase used.
     TouchPhase touchPhase = TouchPhase.Began;
+    TouchPhase touchPhaseOut = TouchPhase.Moved;
 
+    [HideInInspector]
     public bool errase = false;
 
+    [HideInInspector]
     public GameObject currentObjToPlace = null;
+
     fatherRoom currentRoomToPlace;
+    
+    [HideInInspector]
     public GridManager gridManager;
 
     [SerializeField] LayerMask layersToIngore;
 
     bool isRoom;
 
+    [HideInInspector]
     public int doorCount;
 
     Button saveButton;
     Button endRoomButton;
     Button startRoomButton;
     Button simulateButton;
+
+
+    //Zoom
+    float initialDistance;
 
     private void Start()
     {
@@ -79,6 +90,24 @@ public class RoomBehaviour : MonoBehaviour
             else InputForRoom(out hit, ray);
         }
 
+        if (Input.touchCount == 2 && Input.GetTouch(0).phase == touchPhase)
+        {
+            Touch[] inputs = Input.touches;
+            initialDistance = Vector2.Distance(inputs[0].position, inputs[1].position);
+            Debug.Log("DoubleIn");
+        }
+
+        if (Input.touchCount == 2 && (Input.GetTouch(0).phase == touchPhaseOut || Input.GetTouch(1).phase == touchPhaseOut))
+        {
+            Touch[] inputs = Input.touches;
+
+            bool isZoom = initialDistance <= Vector2.Distance(inputs[0].position, inputs[1].position) ? true : false;
+
+            if(gridManager.gameObject.activeInHierarchy) MakeZoom(isZoom);
+
+            initialDistance = Vector2.Distance(inputs[0].position, inputs[1].position);
+        }
+
         //if (Input.GetMouseButtonDown(0))
         //{
         //    OnMouseDown();
@@ -94,11 +123,27 @@ public class RoomBehaviour : MonoBehaviour
     //    else InputForRoom(out hit, ray);
     //}
 
+    void MakeZoom(bool isZoom)
+    {
+        //Zoom in
+        if (isZoom && Vector3.Distance(gridManager.transform.localScale, Vector3.one) >= 0.01f)
+        {
+            gridManager.transform.localScale += Vector3.one * 0.01f;
+            gridManager.CalculatePos();
+        }
+        //Zoom out
+        else if (!isZoom && Vector3.Distance(gridManager.transform.localScale, Vector3.one*0.05f) >= 0.01f)
+        {
+            gridManager.transform.localScale -= Vector3.one * 0.01f;
+            gridManager.CalculatePos();
+        }
+    }
+
     void InputForDungeon(out RaycastHit hit, Ray ray)
     {
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~layersToIngore))
         {
-            if (hit.transform.tag != "Default")
+            if (hit.transform.tag != "Untagged")
             {
                 if (errase && hit.transform.GetComponent<Tile>() != null)
                 {
