@@ -163,7 +163,6 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
         isSimulating = true;
         roomBehaviour.gridManager.GetComponent<NavMeshSurface>().BuildNavMesh();
         scrollView.SetActive(false);
-        //poner como objetivo del caracol la tile con la propiedad "isExit"
     }
 
     public void SetSelectedItem(ItemButton itemButton)

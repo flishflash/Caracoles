@@ -1,5 +1,5 @@
 using System.Collections;
-
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -32,7 +32,6 @@ public class RoomBehaviour : MonoBehaviour
     Button endRoomButton;
     Button startRoomButton;
     Button simulateButton;
-
 
     //Zoom
     float initialDistance;
@@ -94,7 +93,6 @@ public class RoomBehaviour : MonoBehaviour
         {
             Touch[] inputs = Input.touches;
             initialDistance = Vector2.Distance(inputs[0].position, inputs[1].position);
-            Debug.Log("DoubleIn");
         }
 
         if (Input.touchCount == 2 && (Input.GetTouch(0).phase == touchPhaseOut || Input.GetTouch(1).phase == touchPhaseOut))
@@ -176,7 +174,7 @@ public class RoomBehaviour : MonoBehaviour
     {
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~layersToIngore))
         {
-            if (hit.transform.tag != "Default")
+            if (hit.transform.tag != "Untagged")
             {
                 if (errase && hit.transform.GetComponent<Tile>() != null)
                 {
@@ -184,8 +182,8 @@ public class RoomBehaviour : MonoBehaviour
                     if (doorCount < 2) saveButton.interactable = false;
                 }
                 else if (currentObjToPlace != null && currentObjToPlace.GetComponent<ArtifactDetails>() != null
-                    && hit.transform.GetComponent<Tile>() != null &&
-                    CheckIfObjFits(currentObjToPlace.GetComponent<ArtifactDetails>(), hit.transform.GetComponent<Tile>(), hit.transform.GetComponent<Tile>().tileState != -1))
+                    && hit.transform.GetComponent<Tile>() != null && CheckIfObjFits(currentObjToPlace.GetComponent<ArtifactDetails>(),
+                    hit.transform.GetComponent<Tile>(), hit.transform.GetComponent<Tile>().tileState != -1))
                 {
                     hit.transform.GetComponent<Tile>().SetInnerTile(currentObjToPlace.GetComponent<PrefabID>());
                 }
