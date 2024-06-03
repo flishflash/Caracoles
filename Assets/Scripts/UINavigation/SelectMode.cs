@@ -8,7 +8,14 @@ public class SelectMode : MonoBehaviour
     //Change me to change the touch me stepbro.
     TouchPhase touchPhase = TouchPhase.Began;
 
+    private ASyncLoader aSyncLoader;
+    public GameObject aSyncObject;
+
     // Update is called once per frame
+    private void Start()
+    {
+        aSyncLoader = aSyncObject.GetComponent<ASyncLoader>();
+    }
     void Update()
     {
 
@@ -33,15 +40,15 @@ public class SelectMode : MonoBehaviour
             switch (hit.collider.gameObject.name)
             {
                 case "Exit":
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+                    aSyncLoader.LoadScene("MainScene");
 
                     break;
                 case "BuildRoom":
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                    aSyncLoader.LoadScene("BuildRoomScene");
 
                     break;
                 case "BuildDungeon":
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+                    aSyncLoader.LoadScene("GameScene");
 
                     break;
             }
