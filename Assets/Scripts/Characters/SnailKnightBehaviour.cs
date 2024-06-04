@@ -71,8 +71,7 @@ public class SnailKnightBehaviour : MonoBehaviour
             {
                 Debug.Log("Victory!");
                 //LoadScene
-                SceneManager.LoadScene("WinScene");
-
+                SceneManager.LoadScene("LoseScene");
             }
         }
     }

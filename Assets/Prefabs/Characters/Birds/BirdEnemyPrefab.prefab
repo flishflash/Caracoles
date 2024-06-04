@@ -149,6 +149,7 @@ MonoBehaviour:
   detectionInterval: 1
   detectionRadius: 10
   enemyStats: {fileID: 0}
+  _attackSFX: {fileID: 0}
 --- !u!114 &2990646003087578311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,6 +165,7 @@ MonoBehaviour:
   hp: 2
   dmg: 1
   spe: 1
+  dieSFX: {fileID: 0}
 --- !u!114 &3454334308671725516
 MonoBehaviour:
   m_ObjectHideFlags: 0

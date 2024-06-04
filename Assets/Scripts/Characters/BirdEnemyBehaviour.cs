@@ -47,7 +47,7 @@ public class BirdEnemyBehaviour : MonoBehaviour
         }
         else
         {
-            if (player != null)
+            if (player == null)
             {
                 player = GameObject.FindGameObjectWithTag("Player");
                 if (player != null)

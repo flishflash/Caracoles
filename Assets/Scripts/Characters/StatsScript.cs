@@ -25,7 +25,7 @@ public class StatsScript : MonoBehaviour
             {
                 Debug.Log("Defeat...");
                 //LoadScene
-                SceneManager.LoadScene("LoseScene");
+                SceneManager.LoadScene("WinScene");
             }
             Instantiate(dieSFX);
             Destroy(gameObject);
