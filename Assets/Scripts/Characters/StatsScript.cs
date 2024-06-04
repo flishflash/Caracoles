@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class StatsScript : MonoBehaviour
 {
@@ -21,6 +23,7 @@ public class StatsScript : MonoBehaviour
             {
                 Debug.Log("Defeat...");
                 //LoadScene
+                SceneManager.LoadScene("LoseScene");
             }
             Destroy(gameObject);
         }
