@@ -17,6 +17,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameScene.unity
     guid: 30bf3ac4dfaefd74bb54fc97e0417d8a
+  - enabled: 1
+    path: Assets/Scenes/WinScene.unity
+    guid: c2226778d125d5544bc3919ea64e7e62
+  - enabled: 1
+    path: Assets/Scenes/LoseScene.unity
+    guid: 465cc0198cb46254ea64de7da815fe37
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 75125e768939536429071b33733e14e7,
       type: 2}
