@@ -11,7 +11,6 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
     [SerializeField] GameObject ItemButton;
     [SerializeField] Sprite exitSprite;
     [SerializeField] Sprite startSprite;
-    [SerializeField] GameObject scrollView;
 
     [HideInInspector]
     public List<fatherRoom> rooms = new List<fatherRoom>();
@@ -19,8 +18,9 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
     fatherRoom endRoom;
 
     GetAllPrefabs getAllPrefabs;
-    GameObject Mask;
     RoomBehaviour roomBehaviour;
+    GameObject scrollView;
+    GameObject Mask;
 
     TextMeshPro warning;
 
@@ -45,7 +45,6 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
         {
             InstanciateItemButtons();
         }
-        SetExtraRooms();
     }
 
     public void SaveObj()
@@ -193,6 +192,7 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
 
     IEnumerator loadRooms()
     {
+        SetExtraRooms();
         yield return new WaitForFixedUpdate();
         InstanciateRoomButtons();
     }

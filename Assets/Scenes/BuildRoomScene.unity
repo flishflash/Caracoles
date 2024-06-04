@@ -887,7 +887,6 @@ MonoBehaviour:
     type: 3}
   exitSprite: {fileID: 0}
   startSprite: {fileID: 0}
-  scrollView: {fileID: 0}
   rooms: []
   isSimulating: 0
 --- !u!4 &528504777
@@ -1652,6 +1651,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4167225674675484419, guid: 8bcc7bd0666f9aa4d84832725f276676,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4167225674675484419, guid: 8bcc7bd0666f9aa4d84832725f276676,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 6228539680654039409, guid: 8bcc7bd0666f9aa4d84832725f276676,
         type: 3}
