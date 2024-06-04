@@ -58,6 +58,12 @@ public class SnailKnightBehaviour : MonoBehaviour
                     Fight();
                 }
             }
+
+            if (gameObject.transform.position.x == target.x && gameObject.transform.position.z == target.z)
+            {
+                Debug.Log("Victory!");
+                //LoadScene
+            }
         }
     }
 

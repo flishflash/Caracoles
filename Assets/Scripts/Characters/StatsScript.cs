@@ -17,6 +17,11 @@ public class StatsScript : MonoBehaviour
     {
         if (hp <= 0)
         {
+            if (gameObject.CompareTag("Player"))
+            {
+                Debug.Log("Defeat...");
+                //LoadScene
+            }
             Destroy(gameObject);
         }
     }

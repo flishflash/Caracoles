@@ -1,24 +1,9 @@
 fileFormatVersion: 2
-guid: aa21030ca763f734b8700b29942dfe5f
+guid: edd51501b369a5940981a0967f0cf131
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: StoneDark
-    second: {fileID: 2100000, guid: 4263feef176e5cb408ea7661179b66cc, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: StoneLight
-    second: {fileID: 2100000, guid: c6d9431f3d7782a488dc01b3ad28dc7e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: StoneMedium
-    second: {fileID: 2100000, guid: 5871a558b8d9a214a8a6773414b5a774, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -45,7 +30,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
