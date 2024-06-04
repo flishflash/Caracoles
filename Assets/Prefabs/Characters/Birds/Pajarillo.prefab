@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 015838ff8912898459c903dc003c67f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 0e1a3e49cc2ee1a4eb40a83448b7abb2, type: 3}
+  sprite: {fileID: 21300000, guid: a4033d40b039db749a1cb31d5abd2e85, type: 3}
 --- !u!82 &-7450919589290423261
 AudioSource:
   m_ObjectHideFlags: 0
