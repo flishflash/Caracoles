@@ -122,11 +122,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileState: 0
   isDoor: 0
+  isUsed: 0
+  isExit: 0
   isAccesible: 1
   tilePos: {x: 0, y: 0}
   _innerTiles:
     nameID: 
   spriteRenderer: {fileID: 5030743858628668002}
   clearParticle: {fileID: 1219363771842038605, guid: 2112504d2e3be904c91c6f33bd18bd03,
+    type: 3}
+  clearSFX: {fileID: 4655121082326522682, guid: 09119ee4cec9170498ba855ba3865d6c,
     type: 3}
   groupID: 

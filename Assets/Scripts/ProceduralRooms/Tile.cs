@@ -16,6 +16,7 @@ public class Tile : MonoBehaviour
 
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] ParticleSystem clearParticle;
+    [SerializeField] GameObject clearSFX;
     
     AllBuildingPrefabs allBuildingPrefabs;
 
@@ -91,6 +92,7 @@ public class Tile : MonoBehaviour
         if (currentFloor != null) 
         { 
             Instantiate(clearParticle, transform.position, Quaternion.identity);
+            Instantiate(clearSFX, transform.position, Quaternion.identity);
             Destroy(currentFloor); 
         }
         currentFloor = null;
@@ -100,6 +102,7 @@ public class Tile : MonoBehaviour
         if (currentInnerTile != null)
         {
             Instantiate(clearParticle, transform.position, Quaternion.identity);
+            Instantiate(clearSFX, transform.position, Quaternion.identity);
             Destroy(currentInnerTile);
             currentInnerTile = null;
 

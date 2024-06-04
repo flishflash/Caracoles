@@ -13,6 +13,8 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
     [SerializeField] Sprite startSprite;
     public AudioSource exitSFX;
     public AudioSource deleteSFX;
+    public AudioSource eraserSFX;
+    public GameObject popSFX;
 
     [HideInInspector]
     public List<fatherRoom> rooms = new List<fatherRoom>();
@@ -85,6 +87,7 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
     public void SetErraser()
     {
         roomBehaviour.errase = !roomBehaviour.errase;
+        eraserSFX.Play();
     }
 
     void InstanciateItemButtons()
@@ -178,6 +181,7 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
 
     public void SetSelectedItem(ItemButton itemButton)
     {
+        Instantiate(popSFX);
         StartCoroutine(PopWarning(itemButton));
         roomBehaviour.SetCurrentObjectToPlace(itemButton.item);
     }
@@ -240,7 +244,7 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
         StartCoroutine(LoadWithSound(exitSFX, "SelectGamemode"));
     }
 
-    public IEnumerator LoadWithSound(AudioSource audio, string scenename, float time = 0.5f)
+    IEnumerator LoadWithSound(AudioSource audio, string scenename, float time = 0.5f)
     {
         audio.Play();
         yield return new WaitForSeconds(time);
