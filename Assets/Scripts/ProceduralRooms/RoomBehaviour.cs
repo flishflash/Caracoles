@@ -156,7 +156,8 @@ public class RoomBehaviour : MonoBehaviour
                     gridManager.ErraseRoom(hit.transform.GetComponent<Tile>().groupID);
                 }
                 else if (currentRoomToPlace.name != null && hit.transform.GetComponent<Tile>() != null
-                    && hit.transform.GetComponent<Tile>().isAccesible ||
+                    && hit.transform.GetComponent<Tile>().isAccesible && !currentRoomToPlace.name.Equals("StartRoom") &&
+                     !currentRoomToPlace.name.Equals("EndRoom") ||
                     ((currentRoomToPlace.name.Equals("StartRoom") && startRoomButton.interactable)
                     || (currentRoomToPlace.name.Equals("EndRoom") && endRoomButton.interactable)))
                 {
