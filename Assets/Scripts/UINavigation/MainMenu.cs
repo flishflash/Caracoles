@@ -5,13 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public AudioSource playSFX;
+
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        StartCoroutine(LoadGameScene());
     }
 
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public IEnumerator LoadGameScene()
+    {
+        playSFX.Play();
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

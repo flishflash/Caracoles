@@ -11,6 +11,7 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
     [SerializeField] GameObject ItemButton;
     [SerializeField] Sprite exitSprite;
     [SerializeField] Sprite startSprite;
+    public AudioSource exitSFX;
 
     [HideInInspector]
     public List<fatherRoom> rooms = new List<fatherRoom>();
@@ -25,6 +26,7 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
     TextMeshPro warning;
 
     [HideInInspector] public bool isSimulating = false;
+
 
     private void Start()
     {
@@ -223,6 +225,13 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
 
     public void Exit()
     {
-        SceneManager.LoadScene("SelectGamemode");
+        StartCoroutine(LoadWithSound(exitSFX, "SelectGamemode"));
+    }
+
+    public IEnumerator LoadWithSound(AudioSource audio, string scenename, float time = 0.5f)
+    {
+        audio.Play();
+        yield return new WaitForSeconds(time);
+        SceneManager.LoadScene(scenename);
     }
 }

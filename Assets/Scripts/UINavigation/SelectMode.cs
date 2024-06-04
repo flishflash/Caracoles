@@ -11,6 +11,10 @@ public class SelectMode : MonoBehaviour
     private ASyncLoader aSyncLoader;
     public GameObject aSyncObject;
 
+    public AudioSource exitSFX;
+    public AudioSource buildRoomSFX;
+    public AudioSource buildDungeonSFX;
+
     // Update is called once per frame
     private void Start()
     {
@@ -43,18 +47,22 @@ public class SelectMode : MonoBehaviour
             switch (hit.collider.gameObject.name)
             {
                 case "Exit":
-                    aSyncLoader.LoadScene("MainScene");
-
+                    StartCoroutine(LoadWithSound(exitSFX, "MainScene"));
                     break;
                 case "BuildRoom":
-                    aSyncLoader.LoadScene("BuildRoomScene");
-
+                    StartCoroutine(LoadWithSound(buildRoomSFX, "BuildRoomScene"));
                     break;
                 case "BuildDungeon":
-                    aSyncLoader.LoadScene("GameScene");
-
+                    StartCoroutine(LoadWithSound(buildDungeonSFX, "GameScene", 1));
                     break;
             }
         }
+    }
+    //Esta función es para que no se pare el audio al cargar la siguiente escena
+    public IEnumerator LoadWithSound(AudioSource audio, string scenename, float time = 0.5f) 
+    {
+        audio.Play();
+        yield return new WaitForSeconds(time);
+        aSyncLoader.LoadScene(scenename);
     }
 }
