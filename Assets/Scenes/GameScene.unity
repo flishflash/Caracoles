@@ -2389,7 +2389,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1609660009}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2416,18 +2417,24 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1380955920}
     m_Modifications:
     - target: {fileID: 3727128126648274121, guid: 1f0e85d8b51927548bbbc5f69f5ad4dd,
         type: 3}
       propertyPath: width
-      value: 64
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 3727128126648274121, guid: 1f0e85d8b51927548bbbc5f69f5ad4dd,
         type: 3}
       propertyPath: height
-      value: 64
+      value: 32
       objectReference: {fileID: 0}
+    - target: {fileID: 3727128126648274121, guid: 1f0e85d8b51927548bbbc5f69f5ad4dd,
+        type: 3}
+      propertyPath: tilePref
+      value: 
+      objectReference: {fileID: 6965940489217931063, guid: a1ecf2c81051822448d15c49ef0d5545,
+        type: 3}
     - target: {fileID: 5219275604184366642, guid: 1f0e85d8b51927548bbbc5f69f5ad4dd,
         type: 3}
       propertyPath: m_Name
@@ -2436,7 +2443,7 @@ PrefabInstance:
     - target: {fileID: 5816497223204758435, guid: 1f0e85d8b51927548bbbc5f69f5ad4dd,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5816497223204758435, guid: 1f0e85d8b51927548bbbc5f69f5ad4dd,
         type: 3}
@@ -2540,6 +2547,12 @@ MonoBehaviour:
   m_MinRegionArea: 0.0001
   m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
+--- !u!4 &1609660009 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5816497223204758435, guid: 1f0e85d8b51927548bbbc5f69f5ad4dd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1609660005}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1719884872
 GameObject:
   m_ObjectHideFlags: 0
