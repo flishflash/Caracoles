@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyTileSFX : MonoBehaviour
+public class BirdDeathSFX : MonoBehaviour
 {
+    public List<AudioClip> clips = new List<AudioClip>();
+
     private AudioSource _dSFX;
     private float _lifeTime = 1;
     private float _createTime = 0;
@@ -11,6 +13,7 @@ public class DestroyTileSFX : MonoBehaviour
     void Start()
     {
         _dSFX = GetComponent<AudioSource>();
+        _dSFX.clip = clips[Random.Range(0, clips.Count)];
         _createTime = Time.time;
         StartCoroutine(DoSFX());
     }

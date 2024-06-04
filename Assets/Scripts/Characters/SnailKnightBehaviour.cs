@@ -26,12 +26,18 @@ public class SnailKnightBehaviour : MonoBehaviour
     private ButtonsBehaviour buttonScript;
     private GridManager gridManager;
 
+    public AudioSource _spawnSFX;
+    public AudioSource _enterFightSFX;
+    public AudioSource _attackSFX;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         playerStats = GetComponent<StatsScript>();
         
         buttonScript = GameObject.Find("ButtonManager").GetComponent<ButtonsBehaviour>();
+
+        _spawnSFX.Play();
     }
 
     void Update()
@@ -109,6 +115,7 @@ public class SnailKnightBehaviour : MonoBehaviour
     //Iniciar combate
     void EnterCombat()
     {
+        _enterFightSFX.Play();
         inCombat = true;
         hasTarget = true;
         agent.SetDestination(enemy.transform.position);
@@ -165,6 +172,7 @@ public class SnailKnightBehaviour : MonoBehaviour
             {
                 isAttacking = true;
                 animator.Play("Attack");
+                _attackSFX.Play();
             }
         }
         yield return new WaitForSeconds(playerStats.spe / 2);
