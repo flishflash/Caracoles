@@ -35,6 +35,7 @@ public class RoomBehaviour : MonoBehaviour
 
     //Zoom
     float initialDistance;
+    bool canZoom;
 
     private void Start()
     {
@@ -60,6 +61,8 @@ public class RoomBehaviour : MonoBehaviour
             isRoom = false;
         }
         doorCount = 0;
+
+        canZoom = true;
 
         StartCoroutine(setButtons());
     }
@@ -124,17 +127,22 @@ public class RoomBehaviour : MonoBehaviour
     void MakeZoom(bool isZoom)
     {
         //Zoom in
-        if (isZoom && Vector3.Distance(gridManager.transform.localScale, Vector3.one) >= 0.01f)
+        if (isZoom && Vector3.Distance(gridManager.transform.localScale, Vector3.one) >= 0.01f && canZoom)
         {
             gridManager.transform.localScale += Vector3.one * 0.01f;
             gridManager.CalculatePos();
         }
         //Zoom out
-        else if (!isZoom && Vector3.Distance(gridManager.transform.localScale, Vector3.one*0.05f) >= 0.01f)
+        else if (!isZoom && Vector3.Distance(gridManager.transform.localScale, Vector3.one*0.05f) >= 0.01f && canZoom)
         {
             gridManager.transform.localScale -= Vector3.one * 0.01f;
             gridManager.CalculatePos();
         }
+    }
+
+    public void CanNotZoon()
+    {
+        canZoom = false;
     }
 
     void InputForDungeon(out RaycastHit hit, Ray ray)
@@ -148,17 +156,20 @@ public class RoomBehaviour : MonoBehaviour
                     gridManager.ErraseRoom(hit.transform.GetComponent<Tile>().groupID);
                 }
                 else if (currentRoomToPlace.name != null && hit.transform.GetComponent<Tile>() != null
-                    && hit.transform.GetComponent<Tile>().isAccesible ||
-                    ((currentRoomToPlace.name == "StartRoom" && startRoomButton.interactable)
-                    || (currentRoomToPlace.name == "EndRoom" && endRoomButton.interactable)))
+                    && hit.transform.GetComponent<Tile>().isAccesible && !currentRoomToPlace.name.Equals("StartRoom") &&
+                     !currentRoomToPlace.name.Equals("EndRoom") ||
+                    ((currentRoomToPlace.name.Equals("StartRoom") && startRoomButton.interactable)
+                    || (currentRoomToPlace.name.Equals("EndRoom") && endRoomButton.interactable)))
                 {
-                    if (currentRoomToPlace.name == "StartRoom")
+                    if (currentRoomToPlace.name.Equals("StartRoom"))
                     {
                         startRoomButton.interactable = false;
+                        currentObjToPlace = null;
                     }
-                    if (currentRoomToPlace.name == "EndRoom")
+                    if (currentRoomToPlace.name.Equals("EndRoom"))
                     {
                         endRoomButton.interactable = false;
+                        currentObjToPlace = null;
                     }
                     if (!endRoomButton.interactable && !startRoomButton.interactable) simulateButton.interactable = true;
 

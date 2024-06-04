@@ -163,8 +163,17 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
     public void StartSimulation()
     {
         isSimulating = true;
-        roomBehaviour.gridManager.GetComponent<NavMeshSurface>().BuildNavMesh();
+        roomBehaviour.CanNotZoon();
         scrollView.SetActive(false);
+        StartCoroutine(bake());
+    }
+
+    IEnumerator bake()
+    {
+        roomBehaviour.gridManager.transform.localScale = Vector3.one;
+        roomBehaviour.gridManager.CalculatePos();
+        yield return new WaitForFixedUpdate();
+        roomBehaviour.gridManager.GetComponent<NavMeshSurface>().BuildNavMesh();
     }
 
     public void SetSelectedItem(ItemButton itemButton)

@@ -723,7 +723,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 7.2405925, y: 2.966695, z: 0}
+  m_Size: {x: 7.2405925, y: 5.79, z: 0.87}
   m_Center: {x: 0.22099319, y: 0.06012357, z: 0.0000007910069}
 --- !u!114 &390980952
 MonoBehaviour:
@@ -1585,7 +1585,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 14.363518, y: 4.9785542, z: 0}
+  m_Size: {x: 14.363518, y: 4.9785542, z: 1.7}
   m_Center: {x: -2.8305426, y: 0.0018747328, z: 0}
 --- !u!114 &721046279
 MonoBehaviour:
@@ -2777,7 +2777,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1461584372}
-  m_LocalRotation: {x: -0.6087613, y: -0, z: -0, w: 0.7933535}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.776458, z: 2.8977776}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
@@ -2945,6 +2945,7 @@ GameObject:
   - component: {fileID: 1538763912}
   - component: {fileID: 1538763911}
   - component: {fileID: 1538763914}
+  - component: {fileID: 1538763915}
   m_Layer: 0
   m_Name: Ground Plane Stage
   m_TagString: Untagged
@@ -3024,7 +3025,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1538763909}
-  m_LocalRotation: {x: 0.6087613, y: -0, z: -0, w: 0.7933535}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3050,6 +3051,18 @@ MonoBehaviour:
   mTargetName: 
   mDatasetName: 
   mCastedBehaviour: {fileID: 1538763912}
+--- !u!114 &1538763915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538763909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ac365755bc1c34c9fe755753e665c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1580404627 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1679524667405196511, guid: fd80d6880c8683c4d807096c913b74c4,
@@ -3283,8 +3296,20 @@ MonoBehaviour:
   DuplicateStage: 0
   OnContentPlaced:
     m_PersistentCalls:
-      m_Calls: []
-  mDisplayAdvanced: 0
+      m_Calls:
+      - m_Target: {fileID: 1538763915}
+        m_TargetAssemblyTypeName: DisableFinder, Assembly-CSharp
+        m_MethodName: _DisableFinder
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  mDisplayAdvanced: 1
 --- !u!114 &1845617738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3583,14 +3608,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1869222657}
-  m_LocalRotation: {x: 0.1104756, y: -0, z: -0, w: 0.9938789}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 3.24, z: -15.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 12.685, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1888431694
 GameObject:
   m_ObjectHideFlags: 0
@@ -3768,7 +3793,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 19.880728, y: 10.89885, z: 0}
+  m_Size: {x: 19.880728, y: 10.89885, z: 1.53}
   m_Center: {x: -0.00093631935, y: 0.5319427, z: 1.0070004e-11}
 --- !u!114 &1889862484
 MonoBehaviour:
