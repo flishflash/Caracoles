@@ -15,6 +15,8 @@ public class Tile : MonoBehaviour
     GetAllPrefabs getAllPrefabs;
 
     [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] Sprite enabledSprite;
+    [SerializeField] Sprite disabledSprite;
     [SerializeField] ParticleSystem clearParticle;
     [SerializeField] GameObject clearSFX;
     
@@ -37,7 +39,7 @@ public class Tile : MonoBehaviour
 
     private void Update()
     {
-        spriteRenderer.color = isAccesible ? Color.green : Color.grey;
+        spriteRenderer.sprite = isAccesible ? enabledSprite : disabledSprite;
     }
 
     public bool isOccupied()
