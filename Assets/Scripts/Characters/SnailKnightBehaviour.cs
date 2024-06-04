@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
+
 
 public class SnailKnightBehaviour : MonoBehaviour
 {
@@ -63,6 +65,8 @@ public class SnailKnightBehaviour : MonoBehaviour
             {
                 Debug.Log("Victory!");
                 //LoadScene
+                SceneManager.LoadScene("WinScene");
+
             }
         }
     }
