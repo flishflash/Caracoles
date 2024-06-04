@@ -5,6 +5,7 @@ using UnityEngine;
 public class TakeScreenshot : MonoBehaviour 
 {
 	GameObject canvas;
+	public AudioSource screenshotSFX;
 
     private void Start()
     {
@@ -13,7 +14,8 @@ public class TakeScreenshot : MonoBehaviour
 
     public void TakeAShot()
 	{
-		StartCoroutine(CaptureIt());
+		screenshotSFX.Play();
+        StartCoroutine(CaptureIt());
 	}
 
 	IEnumerator CaptureIt()

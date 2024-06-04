@@ -12,6 +12,7 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
     [SerializeField] Sprite exitSprite;
     [SerializeField] Sprite startSprite;
     public AudioSource exitSFX;
+    public AudioSource deleteSFX;
 
     [HideInInspector]
     public List<fatherRoom> rooms = new List<fatherRoom>();
@@ -188,6 +189,8 @@ public class ButtonsBehaviour : MonoBehaviour, IDataPersistance
     }
     IEnumerator loadScene()
     {
+        deleteSFX.Play();
+        yield return new WaitForSeconds(2f);
         yield return new WaitForFixedUpdate();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
