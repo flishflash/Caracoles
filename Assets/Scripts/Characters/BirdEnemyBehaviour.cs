@@ -18,6 +18,8 @@ public class BirdEnemyBehaviour : MonoBehaviour
     [SerializeField] private float detectionRadius = 20f;
 
     public StatsScript enemyStats;
+    public AudioSource _attackSFX;
+
 
     bool isAttacking = false;
 
@@ -120,6 +122,7 @@ public class BirdEnemyBehaviour : MonoBehaviour
 
     IEnumerator DealDamage()
     {
+        _attackSFX.Play();
         isAttacking = true;
 
         if (knightScript.playerStats != null)

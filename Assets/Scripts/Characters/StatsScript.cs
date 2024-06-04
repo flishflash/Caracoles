@@ -10,6 +10,8 @@ public class StatsScript : MonoBehaviour
     public int dmg = 1;
     public float spe = 1f; // tiempo que tarda en atacar, en milisegundos
 
+    public GameObject dieSFX;
+
     void Start()
     {
         
@@ -25,6 +27,7 @@ public class StatsScript : MonoBehaviour
                 //LoadScene
                 SceneManager.LoadScene("LoseScene");
             }
+            Instantiate(dieSFX);
             Destroy(gameObject);
         }
     }
