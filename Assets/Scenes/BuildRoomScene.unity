@@ -1407,7 +1407,6 @@ GameObject:
   - component: {fileID: 688478453}
   - component: {fileID: 688478452}
   - component: {fileID: 688478455}
-  - component: {fileID: 688478456}
   m_Layer: 0
   m_Name: Ground Plane Stage
   m_TagString: Untagged
@@ -1479,7 +1478,7 @@ MonoBehaviour:
   mSelectedStageType: 0
   mPlaneReference: {fileID: 0}
   mMidAirReference: {fileID: 0}
-  mPreview: {fileID: 688478456}
+  mPreview: {fileID: 688478455}
 --- !u!4 &688478454
 Transform:
   m_ObjectHideFlags: 0
@@ -1491,28 +1490,12 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1316664082}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &688478455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 688478450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1308684972, guid: 8a9a760f95896c34689febc965510927, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mObserverBehaviour: {fileID: 688478453}
-  mHiddenRoot: {fileID: 0}
-  mTargetName: 
-  mDatasetName: 
-  mCastedBehaviour: {fileID: 0}
---- !u!114 &688478456
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2205,7 +2188,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 688478454}
     m_Modifications:
     - target: {fileID: 3727128126648274121, guid: 1f0e85d8b51927548bbbc5f69f5ad4dd,
         type: 3}
@@ -2221,7 +2204,7 @@ PrefabInstance:
     - target: {fileID: 5816497223204758435, guid: 1f0e85d8b51927548bbbc5f69f5ad4dd,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5816497223204758435, guid: 1f0e85d8b51927548bbbc5f69f5ad4dd,
         type: 3}
@@ -2298,6 +2281,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f0e85d8b51927548bbbc5f69f5ad4dd, type: 3}
+--- !u!4 &1316664082 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5816497223204758435, guid: 1f0e85d8b51927548bbbc5f69f5ad4dd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1316664081}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1498826999
 GameObject:
   m_ObjectHideFlags: 0

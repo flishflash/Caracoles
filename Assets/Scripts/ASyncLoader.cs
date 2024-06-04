@@ -10,9 +10,12 @@ public class ASyncLoader : MonoBehaviour
 
     [SerializeField] private Slider loadingSlider;
 
+    [SerializeField] GameObject room;
+
     public void LoadScene(string sceneToLoad)
     {
         loadingScreen.SetActive(true);
+        room.SetActive(false);
 
         StartCoroutine(LoadSceneASync(sceneToLoad));
     }

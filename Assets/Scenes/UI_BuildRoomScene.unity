@@ -528,6 +528,7 @@ MonoBehaviour:
   layersToIngore:
     serializedVersion: 2
     m_Bits: 4
+  doorCount: 0
 --- !u!1 &461279299
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,7 +694,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemButton: {fileID: 1155108199642922384, guid: fb6010bbe79de1544b5f390bad042586,
     type: 3}
+  exitSprite: {fileID: 0}
+  startSprite: {fileID: 0}
+  exitSFX: {fileID: 0}
+  deleteSFX: {fileID: 0}
+  eraserSFX: {fileID: 0}
+  popSFX: {fileID: 0}
   rooms: []
+  isSimulating: 0
 --- !u!4 &528504777
 Transform:
   m_ObjectHideFlags: 0
